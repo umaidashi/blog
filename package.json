@@ -1,5 +1,12 @@
 {
-	"name": "blog",
-	"version": "0.0.1",
-	"workspaces": ["views/*", "server/*", "common/*"]
+  "name": "blog",
+  "version": "0.0.1",
+  "workspaces": ["views/*", "server/*", "common/*"],
+  "scripts": {
+    "clean": "rm -rf ./node_modules */**/node_modules ./bun.lockb */**/bun.lockb",
+    "check": "biome check --write ./"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3"
+  }
 }
