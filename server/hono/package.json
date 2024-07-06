@@ -1,11 +1,12 @@
 {
-  "name": "hono",
+  "name": "@server/hono",
   "main": "src/index.ts",
   "scripts": {
     "dev": "wrangler dev src/index.ts",
     "deploy": "wrangler deploy --minify src/index.ts"
   },
   "dependencies": {
+    "@octokit/rest": "^21.0.0",
     "hono": "^4.4.11"
   },
   "devDependencies": {
