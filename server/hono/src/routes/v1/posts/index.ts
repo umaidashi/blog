@@ -1,7 +1,8 @@
 import { Hono } from 'hono'
 import type { HonoConfig } from '../../../config'
 
-const postsApp = new Hono<HonoConfig>()
+// 改行して posts.get() と書くと、型推論が効かないのでつなげる
+const posts = new Hono<HonoConfig>()
   .get('/', async c => {
     return c.json({ message: 'Hello, World!' })
   })
@@ -19,4 +20,4 @@ const postsApp = new Hono<HonoConfig>()
     return c.json({ data: completed }, 200)
   })
 
-export default postsApp
+export default posts
