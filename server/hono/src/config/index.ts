@@ -1,6 +1,8 @@
 import type { Octokit } from '@octokit/rest'
 
 type Env = {
+  GITHUB_OWNER: string
+  GITHUB_REPO: string
   GITHUB_TOKEN: string
   API_TOKEN: string
 }
