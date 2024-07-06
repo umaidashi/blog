@@ -1,9 +1,15 @@
 import type { Octokit } from '@octokit/rest'
 
-export type Env = {
+type Env = {
   GITHUB_TOKEN: string
   API_TOKEN: string
 }
-export type Variables = {
+
+type Variables = {
   octokit: Octokit
+}
+
+export type HonoConfig = {
+  Bindings: Env
+  Variables: Variables
 }
