@@ -4,3 +4,4 @@ main = "src/index.ts"
 
 [dev]
 port = 8080
+GITHUB_TOKEN = 
