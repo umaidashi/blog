@@ -39,11 +39,6 @@ app
   })
   .route('/v1', v1)
 
-export default {
-  port: 8080,
-  fetch: app.fetch
-}
+export default app
 
 export type HC = typeof app
-
-export const api_url = 'http://localhost:8080'
