@@ -1,9 +1,7 @@
 import { Hono } from 'hono'
 import type { HonoConfig } from '../../../config'
 
-export const posts = new Hono<HonoConfig>()
-
-posts
+const postsApp = new Hono<HonoConfig>()
   .get('/', async c => {
     return c.json({ message: 'Hello, World!' })
   })
@@ -20,3 +18,5 @@ posts
     const completed = data.filter(d => d.state_reason === 'completed')
     return c.json({ data: completed }, 200)
   })
+
+export default postsApp

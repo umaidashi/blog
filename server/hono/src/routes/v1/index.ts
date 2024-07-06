@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import type { HonoConfig } from '../../config'
-import { posts } from './posts'
+import posts from './posts'
 
-export const v1 = new Hono<HonoConfig>()
+const v1App = new Hono<HonoConfig>().route('/posts', posts)
 
-v1.route('/posts', posts)
+export default v1App
