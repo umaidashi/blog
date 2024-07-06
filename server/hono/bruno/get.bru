@@ -1,0 +1,15 @@
+meta {
+  name: get
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:8080/v1/posts/list
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{API_TOKEN}}
+}

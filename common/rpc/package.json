@@ -1,0 +1,16 @@
+{
+  "name": "@common/rpc",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "type": "module",
+  "dependencies": {
+    "@server/hono": "workspace:*",
+    "hono": "^4.4.12"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
