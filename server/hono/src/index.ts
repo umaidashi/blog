@@ -45,5 +45,3 @@ export default {
 }
 
 export type HC = typeof app
-
-export const api_url = 'http://localhost:8080'
