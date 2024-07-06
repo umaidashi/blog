@@ -4,4 +4,5 @@ main = "src/index.ts"
 
 [dev]
 port = 8080
-GITHUB_TOKEN = 
+GITHUB_TOKEN = ""
+API_TOKEN = ""

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "turbo run dev --parallel",
     "clean": "rm -rf ./node_modules */**/node_modules ./bun.lockb */**/bun.lockb",
-    "check": "biome check --write ./"
+    "lint": "turbo run lint --parallel"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
