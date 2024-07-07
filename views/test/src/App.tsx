@@ -8,7 +8,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   // tmp
-  const [data, setData] = useState<{ id: number; title: string; html_url: string }[]>([])
+  const [data, setData] = useState<{ id: number; title: string }[]>([])
 
   const fetch = async () => {
     const res = await client.v1.posts.list.$get()
@@ -37,9 +37,7 @@ function App() {
         <h2>Posts</h2>
         <ul>
           {data.map(d => (
-            <li key={d.id}>
-              <a href={d.html_url}>{d.title}</a>
-            </li>
+            <li key={d.id}>{d.title}</li>
           ))}
         </ul>
       </div>
