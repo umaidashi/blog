@@ -1,4 +1,6 @@
 import type { Octokit } from '@octokit/rest'
+import type { DependencyTypes } from '../di/config'
+import type { DIContainer } from '../di/container'
 
 type Env = {
   GITHUB_OWNER: string
@@ -9,6 +11,7 @@ type Env = {
 
 type Variables = {
   octokit: Octokit
+  diContainer: DIContainer<DependencyTypes>
 }
 
 export type HonoConfig = {
