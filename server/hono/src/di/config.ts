@@ -8,9 +8,7 @@ export interface DependencyTypes {
 }
 
 const diContainer = new DIContainer<DependencyTypes>()
-
 diContainer.register('PostRepository', PostRepository)
-
 diContainer.register('PostService', PostService, diContainer.get('PostRepository'))
 
 export { diContainer }
