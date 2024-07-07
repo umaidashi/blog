@@ -1,4 +1,8 @@
-import { type HC, api_url } from '@server/hono'
+import type { HC } from '@server/hono'
 import { hc } from 'hono/client'
 
-export const client = hc<HC>(api_url)
+export const client = hc<HC>('http://localhost:8080', {
+  headers: {
+    Authorization: 'Bearer aiueo'
+  }
+})

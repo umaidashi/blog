@@ -1,11 +1,11 @@
 meta {
-  name: get
+  name: list
   type: http
   seq: 1
 }
 
 get {
-  url: http://localhost:8080/v1/posts/list
+  url: {{API_URL}}/v1/posts/list
   body: none
   auth: bearer
 }
