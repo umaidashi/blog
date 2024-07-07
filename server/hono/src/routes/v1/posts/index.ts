@@ -5,8 +5,8 @@ import type { HonoConfig } from '../../../config/hono'
 const posts = new Hono<HonoConfig>().get('/list', async c => {
   const di = c.var.diContainer
 
-  const postService = di.get('PostService')
-  const posts = await postService.list(c)
+  const postRepository = di.get('PostRepository')
+  const posts = await postRepository.list(c)
 
   return c.json({ data: posts })
 })
