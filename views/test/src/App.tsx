@@ -2,19 +2,18 @@ import { useEffect, useState } from 'react'
 import viteLogo from '/vite.svg'
 import reactLogo from './assets/react.svg'
 import './App.css'
-import { client } from '@common/rpc'
+import { type ResPostsList, client } from '@common/rpc'
 
 function App() {
   const [count, setCount] = useState(0)
 
   // tmp
-  const [data, setData] = useState<{ id: number; title: string }[]>([])
+  const [data, setData] = useState<ResPostsList>()
 
   const fetch = async () => {
     const res = await client.v1.posts.list.$get()
     const data = await res.json()
-    console.log(data)
-    setData(data.data)
+    setData(data)
   }
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
@@ -36,7 +35,7 @@ function App() {
       <div className='card'>
         <h2>Posts</h2>
         <ul>
-          {data.map(d => (
+          {data?.data.map(d => (
             <li key={d.id}>{d.title}</li>
           ))}
         </ul>
