@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import type { HonoConfig } from './config'
+import type { HonoConfig } from './config/hono'
 import { middleware } from './middleware'
 import v1 from './routes/v1'
 

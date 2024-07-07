@@ -2,7 +2,7 @@ import { Hono } from 'hono'
 import { bearerAuth } from 'hono/bearer-auth'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
-import type { HonoConfig } from '../config'
+import type { HonoConfig } from '../config/hono'
 import { diContainer } from '../di/config'
 
 export const middleware = new Hono<HonoConfig>()
