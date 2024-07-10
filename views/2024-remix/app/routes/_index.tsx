@@ -13,9 +13,7 @@ export const meta: MetaFunction = () => {
 }
 
 export const loader = async () => {
-  const res = await client.v1.posts.list.$get()
-  const data = await res.json()
-  return data
+  return await client.v1.posts.list.$get()
 }
 
 export default function Index() {
