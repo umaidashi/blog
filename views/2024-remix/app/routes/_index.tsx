@@ -1,4 +1,4 @@
-import { client } from '@common/rpc'
+import { type ResPostsList, client } from '@common/rpc'
 import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
@@ -19,12 +19,15 @@ export const loader = async () => {
 }
 
 export default function Index() {
-  const data = useLoaderData()
-  console.log(data)
+  const data = useLoaderData<ResPostsList>()
+  console.log(data.data.map(post => post.title))
   return (
     <div className='font-sans p-4 min-h-screen bg-slate-50'>
       <h1 className='text-3xl'>Welcome to Remix on Cloudflare</h1>
       <ul className='list-disc mt-4 pl-6 space-y-2'>
+        {data.data.map(post => (
+          <li key={post.id}>{post.title}</li>
+        ))}
         <li>
           <a
             className='text-blue-700 underline visited:text-purple-900'
