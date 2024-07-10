@@ -6,8 +6,7 @@
   "scripts": {
     "build": "remix vite:build",
     "deploy": "bun run build && wrangler pages deploy",
-    "dev": "bun run concurrently \"bun run dev:css\" \"remix vite:dev\"",
-    "dev:css": "tailwindcss -w -i ./app/tailwind.css -o ./app/tailwind.generated.css",
+    "dev": "remix vite:dev",
     "lint": "biome check --write ./",
     "start": "wrangler pages dev ./build/client",
     "typecheck": "tsc",
@@ -30,7 +29,6 @@
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "autoprefixer": "^10.4.19",
-    "concurrently": "^8.2.2",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.1.6",
