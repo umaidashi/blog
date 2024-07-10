@@ -1,4 +1,6 @@
+import { client } from '@common/rpc'
 import type { MetaFunction } from '@remix-run/cloudflare'
+import { useLoaderData } from '@remix-run/react'
 
 export const meta: MetaFunction = () => {
   return [
@@ -10,9 +12,17 @@ export const meta: MetaFunction = () => {
   ]
 }
 
+export const loader = async () => {
+  const res = await client.v1.posts.list.$get()
+  const data = await res.json()
+  return data
+}
+
 export default function Index() {
+  const data = useLoaderData()
+  console.log(data)
   return (
-    <div className='font-sans p-4'>
+    <div className='font-sans p-4 min-h-screen bg-slate-50'>
       <h1 className='text-3xl'>Welcome to Remix on Cloudflare</h1>
       <ul className='list-disc mt-4 pl-6 space-y-2'>
         <li>
