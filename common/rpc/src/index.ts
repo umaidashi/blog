@@ -7,4 +7,7 @@ export const client = hc<HC>('http://localhost:8080', {
   }
 })
 
-export type ResPostsList = InferResponseType<typeof client.v1.posts.list.$get>
+export type ResPosts = InferResponseType<typeof client.v1.posts.list.$get>
+
+const $get = client.v1.posts[':id'].$get
+export type ResPost = InferResponseType<typeof $get>
