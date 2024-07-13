@@ -1,3 +1,4 @@
+import { Octokit } from '@octokit/rest'
 import { Hono } from 'hono'
 import { bearerAuth } from 'hono/bearer-auth'
 import { cors } from 'hono/cors'
@@ -10,6 +11,11 @@ export const middleware = new Hono<HonoConfig>()
   .use(cors())
   .use('*', (c, next) => {
     c.set('diContainer', diContainer)
+    return next()
+  })
+  .use('*', (c, next) => {
+    const octokit = new Octokit({ auth: c.env.GITHUB_TOKEN })
+    c.set('octokit', octokit)
     return next()
   })
   .use(

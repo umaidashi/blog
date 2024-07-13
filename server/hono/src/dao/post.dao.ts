@@ -1,15 +1,21 @@
-import { Octokit } from '@octokit/rest'
 import type { Context } from 'hono'
+import type { HonoConfig } from '../config/hono'
 import { PostDTO } from '../dto/post.dto'
 
 export interface IPostDao {
-  one(c: Context, postId: number): Promise<PostDTO>
-  list(c: Context): Promise<PostDTO[]>
+  one(c: Context<HonoConfig>, postId: number): Promise<PostDTO>
+  list(c: Context<HonoConfig>): Promise<PostDTO[]>
 }
 
 export class PostDao implements IPostDao {
-  async one(c: Context, postId: number) {
-    const octokit = new Octokit({ auth: c.env.GITHUB_TOKEN })
+  private static getOctokit(c: Context<HonoConfig>) {
+    return c.var.octokit
+  }
+
+  async one(c: Context<HonoConfig>, postId: number) {
+    const octokit = PostDao.getOctokit(c)
+
+    if (Number.isNaN(postId)) throw new Error('Invalid post ID')
 
     const res = await octokit.issues.get({
       owner: c.env.GITHUB_OWNER,
@@ -32,9 +38,8 @@ export class PostDao implements IPostDao {
     )
   }
 
-  async list(c: Context) {
-    const octokit = new Octokit({ auth: c.env.GITHUB_TOKEN })
-
+  async list(c: Context<HonoConfig>) {
+    const octokit = PostDao.getOctokit(c)
     const res = await octokit.issues.listForRepo({
       owner: c.env.GITHUB_OWNER,
       repo: c.env.GITHUB_REPO,
