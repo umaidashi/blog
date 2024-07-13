@@ -21,7 +21,6 @@ export const middleware = new Hono<HonoConfig>()
   .use(
     bearerAuth({
       verifyToken: async (token, c) => {
-        console.log(token, c.env.API_TOKEN)
         return token === c.env.API_TOKEN
       }
     })

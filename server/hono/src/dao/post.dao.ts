@@ -40,6 +40,7 @@ export class PostDao implements IPostDao {
 
   async list(c: Context<HonoConfig>) {
     const octokit = PostDao.getOctokit(c)
+
     const res = await octokit.issues.listForRepo({
       owner: c.env.GITHUB_OWNER,
       repo: c.env.GITHUB_REPO,
