@@ -14,7 +14,7 @@ export const meta: MetaFunction = () => {
 
 export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   const postId = params.id
-  if (!postId) throw new Error('Post ID is required')
+  if (!postId) return { error: 'Post ID is required' }
 
   const client = createClient(context.cloudflare.env)
   return await client.v1.posts[':id'].$get({ param: { id: postId } })
@@ -22,6 +22,14 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
 
 export default function Index() {
   const data = useLoaderData<typeof loader>()
+
+  if (typeof data !== 'object') {
+    return (
+      <div className='font-mono p-4 min-h-screen bg-slate-50'>
+        <h1 className='text-3xl'>Loading...</h1>
+      </div>
+    )
+  }
 
   if ('error' in data) {
     return (
