@@ -1,6 +1,6 @@
-import { client } from '@common/rpc'
-import type { MetaFunction } from '@remix-run/cloudflare'
+import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare'
 import { Link, useLoaderData } from '@remix-run/react'
+import { createClient } from '~/client'
 
 export const meta: MetaFunction = () => {
   return [
@@ -12,7 +12,8 @@ export const meta: MetaFunction = () => {
   ]
 }
 
-export const loader = async () => {
+export const loader = async ({ context }: LoaderFunctionArgs) => {
+  const client = createClient(context.cloudflare.env)
   return await client.v1.posts.list.$get()
 }
 

@@ -21,7 +21,8 @@
     "isbot": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@common/rpc": "workspace:*"
+    "@server/hono": "workspace:*",
+    "hono": "^4.4.12"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240620.0",
