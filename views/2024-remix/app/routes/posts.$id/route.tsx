@@ -1,4 +1,4 @@
-import { type ResPost, client } from '@common/rpc'
+import { client } from '@common/rpc'
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
@@ -19,7 +19,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 }
 
 export default function Index() {
-  const data = useLoaderData<ResPost>()
+  const data = useLoaderData<typeof loader>()
 
   if ('error' in data) {
     return (
