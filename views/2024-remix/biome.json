@@ -1,0 +1,6 @@
+{
+  "extends": ["../../biome.json"],
+  "files": {
+    "ignore": [".wrangler/*", "*.example", "*.test", "*.spec", "*.d.ts", "*.map"]
+  }
+}
