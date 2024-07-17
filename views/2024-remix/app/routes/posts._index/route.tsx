@@ -21,7 +21,7 @@ export default function Index() {
   const data = useLoaderData<typeof loader>()
 
   return (
-    <div className='font-sans p-4 min-h-screen bg-slate-50'>
+    <div>
       <h1 className='text-3xl'>Posts</h1>
       <ul className='list-disc mt-4 pl-6 space-y-2'>
         {data.data.map(post => (

@@ -25,7 +25,7 @@ export default function Index() {
 
   if (typeof data !== 'object') {
     return (
-      <div className='font-mono p-4 min-h-screen bg-slate-50'>
+      <div>
         <h1 className='text-3xl'>Loading...</h1>
       </div>
     )
@@ -33,14 +33,14 @@ export default function Index() {
 
   if ('error' in data) {
     return (
-      <div className='font-mono p-4 min-h-screen bg-slate-50'>
+      <div>
         <h1 className='text-3xl'>Error: {data.error}</h1>
       </div>
     )
   }
 
   return (
-    <div className='font-mono p-4 min-h-screen bg-slate-50'>
+    <div>
       <h1 className='text-3xl'>Post : {data.data.title}</h1>
     </div>
   )
