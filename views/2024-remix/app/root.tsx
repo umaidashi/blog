@@ -39,7 +39,7 @@ export function App() {
         <Links />
       </head>
       <body>
-        <div className='container mx-auto'>
+        <div className='container'>
           <Outlet />
         </div>
         <ScrollRestoration />
