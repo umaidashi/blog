@@ -1,5 +1,6 @@
 import type { MetaFunction } from '@remix-run/cloudflare'
 import { Link } from '@remix-run/react'
+import { Header } from '~/components/header'
 
 export const meta: MetaFunction = () => {
   return [
@@ -13,8 +14,8 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className='font-sans p-4 min-h-screen bg-slate-50'>
-      <h1 className='text-3xl'>Top</h1>
+    <div>
+      <Header />
       <Link to='/posts'>posts</Link>
     </div>
   )

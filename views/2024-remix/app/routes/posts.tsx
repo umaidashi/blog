@@ -1,9 +1,10 @@
 import { Outlet } from '@remix-run/react'
+import { Header } from '~/components/header'
 
 export default function PostsLayout() {
   return (
     <div>
-      <h1>Posts Layout</h1>
+      <Header />
       <Outlet />
     </div>
   )

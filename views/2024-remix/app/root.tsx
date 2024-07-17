@@ -5,7 +5,6 @@ import './styles/tailwind.css'
 
 import type { LoaderFunctionArgs } from '@remix-run/cloudflare'
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react'
-import { ModeToggle } from './components/mode-toggle'
 import { themeSessionResolver } from './sessions.server'
 
 // Return the theme from the session storage using the loader
@@ -40,8 +39,9 @@ export function App() {
         <Links />
       </head>
       <body>
-        <ModeToggle />
-        <Outlet />
+        <div className='container mx-auto'>
+          <Outlet />
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>
