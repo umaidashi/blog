@@ -1,5 +1,8 @@
+import type { LinksFunction } from '@remix-run/cloudflare'
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
-import './tailwind.css'
+import styles from './tailwind.css'
+
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -10,12 +13,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className='border pt-8 pb-16 lg:pt-16 lg:pb-24 bg-primary-400 dark:bg-primary-900 antialiased'>
-        <div className='border flex justify-between px-4 mx-auto max-w-screen-xl'>
-          <div className='border mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert'>
-            {children}
-          </div>
-        </div>
+      <body>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>
