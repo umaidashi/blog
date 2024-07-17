@@ -4,5 +4,8 @@
   "editor.codeActionsOnSave": {
     "quickfix.biome": "always",
     "source.organizeImports.biome": "always"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
   }
 }
