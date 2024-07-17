@@ -1,6 +1,3 @@
 {
-  "extends": ["../../biome.json"],
-  "files": {
-    "ignore": [".wrangler/*", "node_modules", "build", "*.d.ts"]
-  }
+  "extends": ["../../biome.json"]
 }

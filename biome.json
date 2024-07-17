@@ -46,5 +46,8 @@
       "lineWidth": 100,
       "trailingCommas": "none"
     }
+  },
+  "files": {
+    "ignore": [".wrangler/*", "node_modules", "build", "*.d.ts"]
   }
 }
