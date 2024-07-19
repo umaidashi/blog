@@ -38,9 +38,21 @@ export default function Index() {
     )
   }
 
+  const post = data.data
+
   return (
     <div>
-      <h1 className='text-3xl'>{data.data.title}</h1>
+      <h1 className='text-3xl'>{post.title}</h1>
+      <p>published: {new Date(post.created_at).toLocaleDateString()}</p>
+      <p>last edited: {new Date(post.updated_at).toLocaleDateString()}</p>
+      <p>
+        {post.tags.map(tag => (
+          <span key={tag} className='border-2'>
+            {tag}
+          </span>
+        ))}
+      </p>
+      <article>{post.body}</article>
     </div>
   )
 }
