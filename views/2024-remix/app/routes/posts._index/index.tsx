@@ -1,10 +1,10 @@
-import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare'
+import type { MetaFunction } from '@remix-run/cloudflare'
 import { Link, useLoaderData } from '@remix-run/react'
-import { createClient } from '~/client'
+import { getPostsLoader } from './loader'
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [
-    { title: 'New Remix App' },
+    { title: 'Posts - ' },
     {
       name: 'description',
       content: 'Welcome to Remix on Cloudflare!'
@@ -12,10 +12,7 @@ export const meta: MetaFunction = () => {
   ]
 }
 
-export const loader = async ({ context }: LoaderFunctionArgs) => {
-  const client = createClient(context.cloudflare.env)
-  return await client.v1.posts.list.$get()
-}
+export const loader = getPostsLoader
 
 export default function Index() {
   const data = useLoaderData<typeof loader>()

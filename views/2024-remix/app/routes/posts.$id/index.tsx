@@ -1,6 +1,6 @@
-import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare'
+import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
-import { createClient } from '~/client'
+import { getPostByIdLoader } from './loader'
 
 export const meta: MetaFunction = () => {
   return [
@@ -12,13 +12,7 @@ export const meta: MetaFunction = () => {
   ]
 }
 
-export const loader = async ({ params, context }: LoaderFunctionArgs) => {
-  const postId = params.id
-  if (!postId) return { error: 'Post ID is required' }
-
-  const client = createClient(context.cloudflare.env)
-  return await client.v1.posts[':id'].$get({ param: { id: postId } })
-}
+export const loader = getPostByIdLoader
 
 export default function Index() {
   const data = useLoaderData<typeof loader>()
