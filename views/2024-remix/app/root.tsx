@@ -7,16 +7,13 @@ import type { LoaderFunctionArgs } from '@remix-run/cloudflare'
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react'
 import { themeSessionResolver } from './sessions.server'
 
-// Return the theme from the session storage using the loader
 export async function loader({ request }: LoaderFunctionArgs) {
   const { getTheme } = await themeSessionResolver(request)
   return {
     theme: getTheme()
   }
 }
-// Wrap your app with ThemeProvider.
-// `specifiedTheme` is the stored theme in the session storage.
-// `themeAction` is the action name that's used to change the theme in the session storage.
+
 export default function AppWithProviders() {
   const data = useLoaderData<typeof loader>()
   return (
