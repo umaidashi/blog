@@ -1,13 +1,14 @@
 import type { MetaFunction } from '@remix-run/cloudflare'
 import { Link, useLoaderData } from '@remix-run/react'
+import config from '~/config'
 import { getPostsLoader } from './loader'
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
+export const meta: MetaFunction = () => {
   return [
-    { title: 'Posts - ' },
+    { title: `Posts - ${config.app.sitename}` },
     {
       name: 'description',
-      content: 'Welcome to Remix on Cloudflare!'
+      content: '投稿一覧'
     }
   ]
 }

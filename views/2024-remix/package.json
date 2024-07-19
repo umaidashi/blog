@@ -1,5 +1,12 @@
 {
   "name": "@views/2024-remix",
+  "author": {
+    "name": "oidon.",
+    "github": "https://github.com/umaidashi",
+    "x": "https://x.com/umaidashi18",
+    "zenn": "https://zenn.dev/umaidashi"
+  },
+  "description": "umaidashi のブログコンテンツを表示する Remix アプリケーション",
   "private": true,
   "sideEffects": false,
   "type": "module",

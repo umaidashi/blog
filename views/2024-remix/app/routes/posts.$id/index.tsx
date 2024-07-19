@@ -1,13 +1,18 @@
 import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
+import config from '~/config'
 import { getPostByIdLoader } from './loader'
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  if (typeof data !== 'object' || 'error' in data) {
+    return []
+  }
+
   return [
-    { title: 'New Remix App' },
+    { title: `${data.data.title} - ${config.app.sitename}` },
     {
       name: 'description',
-      content: 'Welcome to Remix on Cloudflare!'
+      content: `${data.data.body.slice(0, 100)}...`
     }
   ]
 }
@@ -35,7 +40,7 @@ export default function Index() {
 
   return (
     <div>
-      <h1 className='text-3xl'>Post : {data.data.title}</h1>
+      <h1 className='text-3xl'>{data.data.title}</h1>
     </div>
   )
 }
