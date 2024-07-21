@@ -58,11 +58,60 @@ export default function Index() {
         </p>
       </div>
       <article className='w-full'>
+        <p className='text-2xl'>TOC</p>
+        <ul className='flex flex-col ml-4'>
+          <ReactMarkdown
+            allowedElements={['h1', 'h2', 'h3']}
+            components={{
+              h1: ({ node, ...props }) => (
+                <li className='list-disc list-inside'>
+                  <a
+                    href={`#${node?.position?.start.line}`}
+                    id={node?.position?.start.line.toString()}>
+                    {props.children}
+                  </a>
+                </li>
+              ),
+              h2: ({ node, ...props }) => (
+                <li className='list-disc list-inside ml-4'>
+                  <a
+                    href={`#${node?.position?.start.line}`}
+                    id={node?.position?.start.line.toString()}>
+                    {props.children}
+                  </a>
+                </li>
+              ),
+              h3: ({ node, ...props }) => (
+                <li className='list-disc list-inside ml-8'>
+                  <a
+                    href={`#${node?.position?.start.line}`}
+                    id={node?.position?.start.line.toString()}>
+                    {props.children}
+                  </a>
+                </li>
+              )
+            }}>
+            {post.body}
+          </ReactMarkdown>
+        </ul>
+        <hr />
         <ReactMarkdown
           components={{
-            h1: ({ children }) => <h1 className='text-5xl'># {children}</h1>,
-            h2: ({ children }) => <h2 className='text-4xl'>## {children}</h2>,
-            h3: ({ children }) => <h3 className='text-3xl'>### {children}</h3>,
+            h1: ({ node, ...props }) => (
+              <h1 className='text-5xl' id={node?.position?.start.line.toString()}>
+                # {props.children}
+              </h1>
+            ),
+            h2: ({ node, ...props }) => (
+              <h2 className='text-4xl' id={node?.position?.start.line.toString()}>
+                ## {props.children}
+              </h2>
+            ),
+            h3: ({ node, ...props }) => (
+              <h3 className='text-3xl' id={node?.position?.start.line.toString()}>
+                ### {props.children}
+              </h3>
+            ),
             h4: ({ children }) => <h4 className='text-2xl'>#### {children}</h4>,
             h5: ({ children }) => <h5 className='text-xl'>##### {children}</h5>,
             h6: ({ children }) => <h6 className='text-lg'>###### {children}</h6>
