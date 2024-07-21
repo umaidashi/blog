@@ -1,5 +1,6 @@
 import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
+import { LinkIcon } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import config from '~/config'
 import { getPostByIdLoader } from './loader'
@@ -94,12 +95,14 @@ export default function Index() {
             {post.body}
           </ReactMarkdown>
         </ul>
-        <hr />
+        <hr className='my-4' />
         <ReactMarkdown
           components={{
             h1: ({ node, ...props }) => (
-              <h1 className='text-5xl' id={node?.position?.start.line.toString()}>
-                # {props.children}
+              <h1
+                className='text-5xl cursor-pointer flex items-center'
+                id={node?.position?.start.line.toString()}>
+                # {props.children} <LinkIcon />
               </h1>
             ),
             h2: ({ node, ...props }) => (
