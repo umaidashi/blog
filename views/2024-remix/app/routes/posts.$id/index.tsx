@@ -1,7 +1,7 @@
 import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
-import { LinkIcon } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
+import { H1, H2, H3, H4, H5, H6 } from '~/components/markdown/heading'
 import config from '~/config'
 import { getPostByIdLoader } from './loader'
 
@@ -98,26 +98,12 @@ export default function Index() {
         <hr className='my-4' />
         <ReactMarkdown
           components={{
-            h1: ({ node, ...props }) => (
-              <h1
-                className='text-5xl cursor-pointer flex items-center'
-                id={node?.position?.start.line.toString()}>
-                # {props.children} <LinkIcon />
-              </h1>
-            ),
-            h2: ({ node, ...props }) => (
-              <h2 className='text-4xl' id={node?.position?.start.line.toString()}>
-                ## {props.children}
-              </h2>
-            ),
-            h3: ({ node, ...props }) => (
-              <h3 className='text-3xl' id={node?.position?.start.line.toString()}>
-                ### {props.children}
-              </h3>
-            ),
-            h4: ({ children }) => <h4 className='text-2xl'>#### {children}</h4>,
-            h5: ({ children }) => <h5 className='text-xl'>##### {children}</h5>,
-            h6: ({ children }) => <h6 className='text-lg'>###### {children}</h6>
+            h1: H1,
+            h2: H2,
+            h3: H3,
+            h4: H4,
+            h5: H5,
+            h6: H6
           }}>
           {post.body}
         </ReactMarkdown>
