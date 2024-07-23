@@ -2,6 +2,7 @@ import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import ReactMarkdown from 'react-markdown'
 import { Blockquote } from '~/components/markdown/blockquote'
+import { Code } from '~/components/markdown/code'
 import { H1, H2, H3, H4, H5, H6 } from '~/components/markdown/heading'
 import { Toc } from '~/components/markdown/toc'
 import config from '~/config'
@@ -72,7 +73,8 @@ export default function Index() {
             h4: H4,
             h5: H5,
             h6: H6,
-            blockquote: Blockquote
+            blockquote: Blockquote,
+            code: Code
           }}>
           {post.body}
         </ReactMarkdown>

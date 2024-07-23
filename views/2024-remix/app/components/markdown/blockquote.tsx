@@ -6,6 +6,8 @@ export const Blockquote = ({
   ...props
 }: ClassAttributes<HTMLQuoteElement> & HTMLAttributes<HTMLQuoteElement> & ExtraProps) => {
   return (
-    <blockquote className='border-l-2 border-primary bg-accent p-2'>{props.children}</blockquote>
+    <blockquote className='border-l-2 border-primary bg-secondary text-secondary-foreground p-2 my-2'>
+      {props.children}
+    </blockquote>
   )
 }
