@@ -2,6 +2,7 @@ import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import ReactMarkdown from 'react-markdown'
 import { H1, H2, H3, H4, H5, H6 } from '~/components/markdown/heading'
+import { Toc } from '~/components/markdown/toc'
 import config from '~/config'
 import { getPostByIdLoader } from './loader'
 
@@ -60,41 +61,7 @@ export default function Index() {
       </div>
       <article className='w-full'>
         <p className='text-2xl'>TOC</p>
-        <ul className='flex flex-col ml-4'>
-          <ReactMarkdown
-            allowedElements={['h1', 'h2', 'h3']}
-            components={{
-              h1: ({ node, ...props }) => (
-                <li className='list-disc list-inside'>
-                  <a
-                    href={`#${node?.position?.start.line}`}
-                    id={node?.position?.start.line.toString()}>
-                    {props.children}
-                  </a>
-                </li>
-              ),
-              h2: ({ node, ...props }) => (
-                <li className='list-disc list-inside ml-4'>
-                  <a
-                    href={`#${node?.position?.start.line}`}
-                    id={node?.position?.start.line.toString()}>
-                    {props.children}
-                  </a>
-                </li>
-              ),
-              h3: ({ node, ...props }) => (
-                <li className='list-disc list-inside ml-8'>
-                  <a
-                    href={`#${node?.position?.start.line}`}
-                    id={node?.position?.start.line.toString()}>
-                    {props.children}
-                  </a>
-                </li>
-              )
-            }}>
-            {post.body}
-          </ReactMarkdown>
-        </ul>
+        <Toc markdown={post.body} />
         <hr className='my-4' />
         <ReactMarkdown
           components={{
