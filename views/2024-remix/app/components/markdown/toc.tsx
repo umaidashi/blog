@@ -1,10 +1,12 @@
 import ReactMarkdown from 'react-markdown'
+import rehypeSanitize from 'rehype-sanitize'
 
 export const Toc = ({ markdown }: { markdown: string }) => {
   return (
     <ul className='flex flex-col ml-4'>
       <ReactMarkdown
         allowedElements={['h1', 'h2', 'h3']}
+        rehypePlugins={[rehypeSanitize]}
         components={{
           h1: ({ node, ...props }) => (
             <li className='list-disc list-inside'>

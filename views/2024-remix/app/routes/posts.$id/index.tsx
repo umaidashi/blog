@@ -1,6 +1,8 @@
 import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
+import remarkGfm from 'remark-gfm'
 import { Blockquote } from '~/components/markdown/blockquote'
 import { Code } from '~/components/markdown/code'
 import { H1, H2, H3, H4, H5, H6 } from '~/components/markdown/heading'
@@ -68,6 +70,8 @@ export default function Index() {
         <Toc markdown={post.body} />
         <hr className='my-4' />
         <ReactMarkdown
+          rehypePlugins={[rehypeRaw]}
+          remarkPlugins={[remarkGfm]}
           components={{
             h1: H1,
             h2: H2,
