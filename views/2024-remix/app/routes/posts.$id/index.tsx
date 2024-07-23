@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { Blockquote } from '~/components/markdown/blockquote'
 import { Code } from '~/components/markdown/code'
 import { H1, H2, H3, H4, H5, H6 } from '~/components/markdown/heading'
+import { Link } from '~/components/markdown/link'
 import { Toc } from '~/components/markdown/toc'
 import config from '~/config'
 import { getPostByIdLoader } from './loader'
@@ -74,7 +75,8 @@ export default function Index() {
             h5: H5,
             h6: H6,
             blockquote: Blockquote,
-            code: Code
+            code: Code,
+            a: Link
           }}>
           {post.body}
         </ReactMarkdown>
