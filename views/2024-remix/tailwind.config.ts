@@ -17,6 +17,13 @@ const config = {
         md: '768px'
       }
     },
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+      square: 'square',
+      roman: 'upper-roman'
+    },
     extend: {
       colors: {
         border: 'hsl(var(--border))',
