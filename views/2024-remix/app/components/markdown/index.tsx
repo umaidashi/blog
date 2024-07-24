@@ -5,6 +5,7 @@ import { Blockquote } from './blockquote'
 import { Code } from './code'
 import { H1, H2, H3, H4, H5, H6 } from './heading'
 import { Li, Ol, Ul } from './list'
+import { Pre } from './pre'
 
 export const componets: Partial<Components> = {
   h1: H1,
@@ -15,6 +16,7 @@ export const componets: Partial<Components> = {
   h6: H6,
   blockquote: Blockquote,
   code: Code,
+  pre: Pre,
   a: A,
   ul: Ul,
   ol: Ol,
