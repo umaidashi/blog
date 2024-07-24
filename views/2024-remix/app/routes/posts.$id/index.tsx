@@ -3,11 +3,9 @@ import { useLoaderData } from '@remix-run/react'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
-import { Blockquote } from '~/components/markdown/blockquote'
-import { Code } from '~/components/markdown/code'
-import { H1, H2, H3, H4, H5, H6 } from '~/components/markdown/heading'
-import { Link } from '~/components/markdown/link'
-import { Li, Ol, Ul } from '~/components/markdown/list'
+import { componets } from '~/components/markdown'
+import {} from '~/components/markdown/heading'
+import {} from '~/components/markdown/list'
 import { Toc } from '~/components/markdown/toc'
 import config from '~/config'
 import { getPostByIdLoader } from './loader'
@@ -72,20 +70,7 @@ export default function Index() {
         <ReactMarkdown
           rehypePlugins={[rehypeRaw]}
           remarkPlugins={[remarkGfm]}
-          components={{
-            h1: H1,
-            h2: H2,
-            h3: H3,
-            h4: H4,
-            h5: H5,
-            h6: H6,
-            blockquote: Blockquote,
-            code: Code,
-            a: Link,
-            ul: Ul,
-            ol: Ol,
-            li: Li
-          }}>
+          components={componets}>
           {post.body}
         </ReactMarkdown>
       </article>
