@@ -2,6 +2,7 @@ import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import Markdown from 'markdown-to-jsx'
 import { componets } from '~/components/markdown'
+import { Badge } from '~/components/ui/badge'
 import config from '~/config'
 import { getPostByIdLoader } from './loader'
 
@@ -44,19 +45,22 @@ export default function Index() {
 
   return (
     <div className='flex flex-col gap-4 items-center'>
-      <h1 className='text-3xl'>{post.title}</h1>
-      <div className='flex gap-4'>
-        <p>published: {new Date(post.created_at).toDateString()}</p>
-        <p>last edited: {new Date(post.updated_at).toDateString()}</p>
-        <p>
-          {post.tags.map(tag => (
-            <span
-              key={tag}
-              className='border-2 p-1 rounded-full bg-primary text-primary-foreground'>
-              {tag}
-            </span>
-          ))}
-        </p>
+      <h1 className='text-3xl font-semibold'>{post.title}</h1>
+      <div className='flex gap-8'>
+        <div className='flex flex-col items-center gap-2'>
+          <p className='text-muted-foreground text-xs font-semibold'>Published</p>
+          <time dateTime={post.created_at} className='text-sm font-bold'>
+            {new Date(post.created_at).toLocaleDateString('ja-JP')}
+          </time>
+        </div>
+        <div className='flex flex-col items-center gap-2'>
+          <p className='text-muted-foreground text-xs font-semibold'>Tags</p>
+          <div className='flex gap-2 items-center'>
+            {post.tags.map(tag => (
+              <Badge key={tag.id}>#{tag.name}</Badge>
+            ))}
+          </div>
+        </div>
       </div>
       <article className='w-full'>
         <Markdown
