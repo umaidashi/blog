@@ -60,6 +60,7 @@ export default function Index() {
       </div>
       <article className='w-full'>
         <Markdown
+          className='flex flex-col gap-4'
           options={{
             overrides: componets
           }}>
