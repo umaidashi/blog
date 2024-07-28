@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'views/remix-2024/**'
+  workflow_dispatch:
 
 jobs:
   publish:
