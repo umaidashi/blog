@@ -15,7 +15,9 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <div>
-      <Link to='/posts'>posts</Link>
+      <Link className='border-b-2 border-primary text-primary' to='/posts'>
+        posts
+      </Link>
     </div>
   )
 }
