@@ -15,12 +15,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install dependencies
+        run: bun install
+      
+      - name: Build
+        run: bun run build
       
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@3
+        uses: cloudflare/pages-action@1
         with: 
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
           directory: "build/client"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: "3"
