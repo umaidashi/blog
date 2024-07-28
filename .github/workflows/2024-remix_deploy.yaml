@@ -33,6 +33,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
-          directory: .views/2024-remix/build/client
+          directory: views/2024-remix/build/client
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           wranglerVersion: "3"
