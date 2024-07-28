@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'views/remix-2024/**'
+      - '.github/workflows/remix-2024_deploy.yaml'
   workflow_dispatch:
 
 jobs:
@@ -12,6 +13,9 @@ jobs:
     permissions:
       contents: read
       deployments: write
+    defaults:
+      run:
+        working-directory: views/remix-2024
     steps:
       - name: Checkout
         uses: actions/checkout@v3
