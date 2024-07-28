@@ -15,7 +15,7 @@ jobs:
       deployments: write
     defaults:
       run:
-        working-directory: views/remix-2024
+        working-directory: ./views/remix-2024
     steps:
       - name: Checkout
         uses: actions/checkout@v3
