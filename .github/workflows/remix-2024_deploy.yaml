@@ -32,6 +32,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
-          directory: "build/client"
+          directory: "views/remix-2024/build/client"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           wranglerVersion: "3"
