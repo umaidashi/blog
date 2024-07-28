@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "turbo run dev --parallel",
     "clean": "rm -rf ./node_modules */**/node_modules ./bun.lockb */**/bun.lockb",
-    "lint": "turbo run lint --parallel"
+    "lint": "turbo run lint --parallel",
+    "build": "turbo run build --parallel"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",

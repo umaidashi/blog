@@ -24,7 +24,7 @@ jobs:
         run: bun install
       
       - name: Build
-        run: cd ./views/remix-2024; bun run build
+        run: bun run build
       
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@1
