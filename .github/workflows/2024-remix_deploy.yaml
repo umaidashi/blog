@@ -1,10 +1,10 @@
-name: remix-2024_deploy
+name: 2024-remix_deploy
 
 on:
   push:
     paths:
-      - 'views/remix-2024/**'
-      - '.github/workflows/remix-2024_deploy.yaml'
+      - 'views/2024-remix/**'
+      - '.github/workflows/2024-remix_deploy.yaml'
   workflow_dispatch:
 
 jobs:
@@ -22,11 +22,10 @@ jobs:
 
       - name: Install dependencies
         run: bun install
-        working-directory: views/remix-2024
       
       - name: Build
         run: bunx --bun remix vite:build      
-        working-directory: views/remix-2024
+        working-directory: views/2024-remix
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@1
@@ -34,6 +33,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
-          directory: ./build/client
+          directory: .views/2024-remix/build/client
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           wranglerVersion: "3"
