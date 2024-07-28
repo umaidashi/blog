@@ -5,7 +5,7 @@ type ImgProps = ClassAttributes<HTMLImageElement> &
 
 export const Img = ({ alt, src }: ImgProps) => {
   return (
-    <div className='flex justify-center rounded-[--radius]'>
+    <div className='flex justify-center items-center rounded-[--radius] bg-secondary min-h-16'>
       <img className='max-w-full' src={src} alt={alt} />
     </div>
   )
