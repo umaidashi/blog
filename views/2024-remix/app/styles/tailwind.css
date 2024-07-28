@@ -77,3 +77,21 @@
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
 }
+
+td:first-child,
+th:first-child {
+  border-left: none;
+}
+td:last-child,
+th:last-child {
+  border-right: none;
+}
+tr:first-child td,
+tr:first-child th {
+  border-top: none;
+}
+
+tr:last-child td,
+tr:last-child th {
+  border-bottom: none;
+}

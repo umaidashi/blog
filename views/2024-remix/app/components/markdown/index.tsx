@@ -8,6 +8,7 @@ import { Img } from './img'
 import { Li, Ol, Ul } from './list'
 import { P } from './p'
 import { Pre } from './pre'
+import { Table, Tbody, Td, Th, Thead, Tr } from './table'
 
 export const componets: MarkdownToJSX.Overrides = {
   h1: H1,
@@ -26,5 +27,11 @@ export const componets: MarkdownToJSX.Overrides = {
   ol: Ol,
   li: Li,
   details: Details,
-  summary: Summary
+  summary: Summary,
+  table: Table,
+  thead: Thead,
+  tbody: Tbody,
+  tr: Tr,
+  th: Th,
+  td: Td
 }
