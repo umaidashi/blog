@@ -4,12 +4,13 @@ import { bearerAuth } from 'hono/bearer-auth'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
 import type { HonoConfig } from '../config/hono'
-import { diContainer } from '../di/config'
+import { NewDiContainer } from '../di/config'
 
 export const middleware = new Hono<HonoConfig>()
   .use('*', logger())
   .use(cors())
   .use('*', (c, next) => {
+    const diContainer = NewDiContainer(c.env.ENV)
     c.set('diContainer', diContainer)
     return next()
   })

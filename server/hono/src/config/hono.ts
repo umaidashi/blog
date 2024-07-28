@@ -7,6 +7,7 @@ type Env = {
   GITHUB_REPO: string
   GITHUB_TOKEN: string
   API_TOKEN: string
+  ENV: string
 }
 
 type Variables = {
