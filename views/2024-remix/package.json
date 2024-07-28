@@ -11,7 +11,7 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "remix vite:build",
+    "build": "bunx --bun remix vite:build",
     "deploy": "bun run build && wrangler pages deploy",
     "dev": "remix vite:dev",
     "lint": "biome check --write ./",
