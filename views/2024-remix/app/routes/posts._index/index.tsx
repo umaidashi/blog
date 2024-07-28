@@ -5,7 +5,7 @@ import { getPostsLoader } from './loader'
 
 export const meta: MetaFunction = () => {
   return [
-    { title: `Posts - ${config.app.sitename}` },
+    { title: `投稿一覧 - ${config.app.sitename}` },
     {
       name: 'description',
       content: '投稿一覧'
