@@ -3,7 +3,11 @@ import type { ClassAttributes, HTMLAttributes } from 'react'
 export const Details = ({
   children
 }: ClassAttributes<HTMLDetailsElement> & HTMLAttributes<HTMLDetailsElement>) => {
-  return <details className='border-2 px-4 py-4 my-1 rounded-[--radius]'>{children}</details>
+  return (
+    <details className='bg-secondary text-secondary-foreground px-4 py-4 my-1 rounded-[--radius]'>
+      {children}
+    </details>
+  )
 }
 
 export const Summary = ({

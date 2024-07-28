@@ -19,9 +19,9 @@ export const Pre = ({
   })
   return (
     <div className='my-4'>
-      <div className='flex justify-between items-center bg-primary text-primary-foreground py-1 px-4 h-6 rounded-t-[--radius]'>
-        <span className='text-sm'>{name}</span>
-        <span className='text-xs text-primary-foreground'>{lang}</span>
+      <div className='flex justify-between items-center bg-primary text-primary-foreground py-1 px-4 h-8 rounded-t-[--radius]'>
+        <span className='text-sm font-semibold'>{name}</span>
+        <span className='text-xs text-primary-foreground font-semibold'>{lang}</span>
       </div>
       <div
         // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
