@@ -1,5 +1,4 @@
 import { type ClassAttributes, type HTMLAttributes, isValidElement } from 'react'
-import type { ExtraProps } from 'react-markdown'
 import { bundledLanguages, bundledThemes, createHighlighter } from 'shiki'
 
 const highlighter = await createHighlighter({
@@ -9,7 +8,7 @@ const highlighter = await createHighlighter({
 
 export const Pre = ({
   ...props
-}: ClassAttributes<HTMLPreElement> & HTMLAttributes<HTMLPreElement> & ExtraProps) => {
+}: ClassAttributes<HTMLPreElement> & HTMLAttributes<HTMLPreElement>) => {
   const childProps = isValidElement(props.children) ? props.children.props : {}
   const match = /lang-(\w+)/.exec(childProps.className || '')
   const lang = match ? (match[1] ? match[1] : '') : ''
