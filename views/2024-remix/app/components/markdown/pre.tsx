@@ -46,7 +46,7 @@ export const Pre = ({
         />
       ) : (
         <div className='flex justify-center items-center h-24 bg-[#24292e] rounded-b-[--radius]'>
-          <div className='animate-ping h-4 w-4 bg-blue-600 rounded-full' />
+          <div className='animate-ping h-4 w-4 bg-primary rounded-full' />
         </div>
       )}
     </div>
