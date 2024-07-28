@@ -1,0 +1,25 @@
+name: remix-2024_deploy
+
+on:
+  push:
+    paths:
+      - 'views/remix-2024/**'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@3
+        with: 
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
+          directory: "build/client"
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
