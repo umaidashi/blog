@@ -16,5 +16,8 @@ export default defineConfig({
       // },
     }),
     tsconfigPaths()
-  ]
+  ],
+  optimizeDeps: {
+    include: ['clsx', 'remix-themes', '@remix-run/cloudflare', 'hono/client']
+  }
 })
