@@ -34,7 +34,11 @@ export class PostDao implements IPostDao {
       d.body ?? '',
       new Date(d.created_at),
       new Date(d.updated_at),
-      d.labels.map(l => (typeof l === 'string' ? l : l.name ?? ''))
+      d.labels.map(l =>
+        typeof l === 'string'
+          ? { id: 0, name: l, color: '' }
+          : { id: l.id ?? 0, name: l.name ?? '', color: l.color ?? '' }
+      )
     )
   }
 
@@ -59,7 +63,11 @@ export class PostDao implements IPostDao {
         d.body ?? '',
         new Date(d.created_at),
         new Date(d.updated_at),
-        d.labels.map(l => (typeof l === 'string' ? l : l.name ?? ''))
+        d.labels.map(l =>
+          typeof l === 'string'
+            ? { id: 0, name: l, color: '' }
+            : { id: l.id ?? 0, name: l.name ?? '', color: l.color ?? '' }
+        )
       )
     })
     return posts

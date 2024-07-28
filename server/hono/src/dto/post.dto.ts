@@ -5,6 +5,6 @@ export class PostDTO {
     public body: string,
     public created_at: Date,
     public updated_at: Date,
-    public tags: string[]
+    public tags: { id: number; name: string; color: string }[]
   ) {}
 }
