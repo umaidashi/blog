@@ -1,12 +1,7 @@
 import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
-import ReactMarkdown from 'react-markdown'
-import rehypeRaw from 'rehype-raw'
-import remarkGfm from 'remark-gfm'
+import Markdown from 'markdown-to-jsx'
 import { componets } from '~/components/markdown'
-import {} from '~/components/markdown/heading'
-import {} from '~/components/markdown/list'
-import { Toc } from '~/components/markdown/toc'
 import config from '~/config'
 import { getPostByIdLoader } from './loader'
 
@@ -64,15 +59,12 @@ export default function Index() {
         </p>
       </div>
       <article className='w-full'>
-        <p className='text-2xl'>TOC</p>
-        <Toc markdown={post.body} />
-        <hr className='my-4' />
-        <ReactMarkdown
-          rehypePlugins={[rehypeRaw]}
-          remarkPlugins={[remarkGfm]}
-          components={componets}>
+        <Markdown
+          options={{
+            overrides: componets
+          }}>
           {post.body}
-        </ReactMarkdown>
+        </Markdown>
       </article>
     </div>
   )
