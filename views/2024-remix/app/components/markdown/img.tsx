@@ -7,7 +7,7 @@ export const Img = ({ alt, src }: ImgProps) => {
   return (
     <div className='flex items-center justify-center'>
       <img
-        className='aspect-square object-cover max-w-md w-9/12 border-4 bg-border rounded-[--radius]'
+        className='object-cover max-w-md w-9/12 max-h-96 border-4 bg-border rounded-[--radius]'
         src={src}
         alt={alt}
       />
