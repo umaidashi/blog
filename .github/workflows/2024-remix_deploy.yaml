@@ -24,7 +24,7 @@ jobs:
         run: bun install
       
       - name: Build
-        run: bunx --bun remix vite:build      
+        run: bun run build      
         working-directory: views/2024-remix
 
       - name: Publish to Cloudflare Pages
