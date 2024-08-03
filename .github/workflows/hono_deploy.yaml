@@ -25,15 +25,16 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "3.57.2"
           workingDirectory: server/hono
           packageManager: bun
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           secrets: |
             GITHUB_OWNER
             GITHUB_REPO
             GITHUB_TOKEN
             API_TOKEN
+          command: deploy --name hono
         env:
           GITHUB_OWNER: ${{ secrets.OWNER }}
           GITHUB_REPO: ${{ secrets.REPO }}
