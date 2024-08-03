@@ -34,7 +34,6 @@ jobs:
             GITHUB_REPO
             GITHUB_TOKEN
             API_TOKEN
-          command: deploy --name hono
         env:
           GITHUB_OWNER: ${{ secrets.OWNER }}
           GITHUB_REPO: ${{ secrets.REPO }}
