@@ -35,7 +35,7 @@ jobs:
             GITHUB_TOKEN
             API_TOKEN
         env:
-          GITHUB_OWNER: ${{ secrets.OWNER }}
-          GITHUB_REPO: ${{ secrets.REPO }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_OWNER: ${{ secrets.GH_OWNER }}
+          GITHUB_REPO: ${{ secrets.GH_REPO }}
+          GITHUB_TOKEN: ${{ secrets.GH_API_TOKEN }}
           API_TOKEN: ${{ secrets.API_TOKEN }}
