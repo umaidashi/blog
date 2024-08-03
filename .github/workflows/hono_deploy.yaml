@@ -27,6 +27,8 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           wranglerVersion: "3"
           workingDirectory: server/hono
+          packageManager: bun
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           secrets: |
             GITHUB_OWNER
             GITHUB_REPO
