@@ -25,3 +25,16 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          wranglerVersion: "3"
+          workingDirectory: server/hono
+          secrets: |
+            GITHUB_OWNER
+            GITHUB_REPO
+            GITHUB_TOKEN
+            API_TOKEN
+        env:
+          GITHUB_OWNER: ${{ secrets.OWNER }}
+          GITHUB_REPO: ${{ secrets.REPO }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+
