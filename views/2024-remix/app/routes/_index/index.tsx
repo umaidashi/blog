@@ -1,5 +1,4 @@
 import type { MetaFunction } from '@remix-run/cloudflare'
-import { Link } from '@remix-run/react'
 import { Header } from '~/components/header'
 import config from '~/config'
 
@@ -17,9 +16,6 @@ export default function Index() {
   return (
     <div>
       <Header />
-      <Link className='border-b-2 border-primary text-primary' to='/posts'>
-        posts
-      </Link>
     </div>
   )
 }
