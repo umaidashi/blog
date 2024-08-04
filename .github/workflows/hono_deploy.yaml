@@ -5,6 +5,8 @@ on:
     paths:
       - 'server/hono/**'
       - '.github/workflows/hono_deploy.yaml'
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
