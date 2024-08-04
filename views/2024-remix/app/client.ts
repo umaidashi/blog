@@ -10,3 +10,5 @@ export const createClient = (env: Env) => {
     }
   })
 }
+
+export const client = hc<HC>('')
