@@ -16,7 +16,21 @@ export class PostDao implements IPostDao {
   private static async getZennPosts(c: Context<HonoConfig>) {
     const res = await fetch('https://zenn.dev/api/articles?username=umaidashi')
     const data: { articles: ZennPost[] } = await res.json()
-    return data.articles
+
+    const zennPosts = data.articles.map(d => {
+      return new PostDTO(
+        d.id,
+        d.title,
+        '',
+        new Date(d.published_at),
+        new Date(d.body_updated_at),
+        [],
+        Platforms.Zenn,
+        d
+      )
+    })
+
+    return zennPosts
   }
 
   async one(c: Context<HonoConfig>, postId: number) {
@@ -64,19 +78,7 @@ export class PostDao implements IPostDao {
     const data = res.data
     const completed = data.filter(d => d.state_reason === 'completed')
 
-    const zennPostsRaw = await PostDao.getZennPosts(c)
-    const zennPosts = zennPostsRaw.map(d => {
-      return new PostDTO(
-        d.id,
-        d.title,
-        '',
-        new Date(d.published_at),
-        new Date(d.body_updated_at),
-        [],
-        Platforms.Zenn,
-        d
-      )
-    })
+    const zennPosts = await PostDao.getZennPosts(c)
 
     const personalPosts: PostDTO[] = completed.map(d => {
       return new PostDTO(
