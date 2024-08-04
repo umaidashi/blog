@@ -1,6 +1,7 @@
 import type { Context } from 'hono'
 import type { HonoConfig } from '../config/hono'
 import { Platforms, PostDTO } from '../dto/post.dto'
+import type { ZennPost } from '../types/zenn'
 
 export interface IPostDaoMock {
   one(c: Context<HonoConfig>, postId: number): Promise<PostDTO>
@@ -8,6 +9,26 @@ export interface IPostDaoMock {
 }
 
 export class PostDaoMock implements IPostDaoMock {
+  private static async getZennPosts(c: Context<HonoConfig>) {
+    const res = await fetch('https://zenn.dev/api/articles?username=umaidashi')
+    const data: { articles: ZennPost[] } = await res.json()
+
+    const zennPosts = data.articles.map(d => {
+      return new PostDTO(
+        d.id,
+        d.title,
+        '',
+        new Date(d.published_at),
+        new Date(d.body_updated_at),
+        [],
+        Platforms.Zenn,
+        d
+      )
+    })
+
+    return zennPosts
+  }
+
   async one(c: Context<HonoConfig>, postId: number) {
     return new PostDTO(
       9,
@@ -27,7 +48,9 @@ export class PostDaoMock implements IPostDaoMock {
   }
 
   async list(c: Context<HonoConfig>) {
-    const posts: PostDTO[] = [
+    const zennPosts = await PostDaoMock.getZennPosts(c)
+
+    const personalPosts: PostDTO[] = [
       {
         id: 12,
         title: 'reactmarkdown から markdown-to-jsx への移行',
@@ -68,6 +91,9 @@ export class PostDaoMock implements IPostDaoMock {
         platform: Platforms.Personal
       }
     ]
+    const posts = [...zennPosts, ...personalPosts].sort((a, b) => {
+      return b.updated_at.getTime() - a.updated_at.getTime()
+    })
     return posts
   }
 }
