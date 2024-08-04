@@ -6,8 +6,12 @@ import { logger } from 'hono/logger'
 import type { HonoConfig } from '../config/hono'
 import { NewDiContainer } from '../di/config'
 
+export const customLogger = (message: string, ...rest: string[]) => {
+  console.log(message, ...rest)
+}
+
 export const middleware = new Hono<HonoConfig>()
-  .use('*', logger())
+  .use('*', logger(customLogger))
   .use(cors())
   .use('*', (c, next) => {
     const diContainer = NewDiContainer(c.env.ENV)
