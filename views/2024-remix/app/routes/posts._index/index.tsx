@@ -1,6 +1,7 @@
 import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import { tv } from 'tailwind-variants'
+import PageTitle from '~/components/page_title'
 import config from '~/config'
 import { Card } from './card'
 import { getPostsLoader } from './loader'
@@ -17,12 +18,11 @@ export const meta: MetaFunction = () => {
 
 const postList = tv({
   slots: {
-    header: 'text-2xl font-bold pb-8',
     wrapper: 'flex flex-col gap-4'
   }
 })
 
-const { header, wrapper } = postList()
+const { wrapper } = postList()
 
 export const loader = getPostsLoader
 
@@ -31,7 +31,7 @@ export default function Index() {
 
   return (
     <div>
-      <h1 className={header()}>投稿一覧</h1>
+      <PageTitle title={'投稿一覧'} />
       <ul className={wrapper()}>
         {data.data.map(post => (
           <Card key={post.id} post={post} />
