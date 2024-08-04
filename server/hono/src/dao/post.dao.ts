@@ -73,7 +73,8 @@ export class PostDao implements IPostDao {
         new Date(d.published_at),
         new Date(d.body_updated_at),
         [],
-        Platforms.Zenn
+        Platforms.Zenn,
+        d
       )
     })
 

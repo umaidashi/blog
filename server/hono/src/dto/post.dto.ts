@@ -1,3 +1,5 @@
+import type { ZennPost } from '../types/zenn'
+
 export class PostDTO {
   constructor(
     public id: number,
@@ -6,7 +8,8 @@ export class PostDTO {
     public created_at: Date,
     public updated_at: Date,
     public tags: { id: number; name: string; color: string }[],
-    public platform: Platforms
+    public platform: Platforms,
+    public zennObj?: ZennPost
   ) {}
 }
 
