@@ -3,7 +3,7 @@ import { tv } from 'tailwind-variants'
 
 const header = tv({
   slots: {
-    base: 'flex items-center py-4',
+    base: 'flex items-center py-4 mb-8',
     sitename: 'font-medium',
     divider: 'mx-2 text-sm text-gray-500',
     menu: 'font-medium'

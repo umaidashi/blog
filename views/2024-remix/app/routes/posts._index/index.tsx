@@ -17,7 +17,7 @@ export const meta: MetaFunction = () => {
 
 const postList = tv({
   slots: {
-    header: 'text-2xl font-bold py-8',
+    header: 'text-2xl font-bold pb-8',
     wrapper: 'flex flex-col gap-4'
   }
 })
