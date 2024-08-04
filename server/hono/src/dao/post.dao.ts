@@ -1,6 +1,7 @@
 import type { Context } from 'hono'
 import type { HonoConfig } from '../config/hono'
-import { PostDTO } from '../dto/post.dto'
+import { Platforms, PostDTO } from '../dto/post.dto'
+import type { ZennPost } from '../types/zenn'
 
 export interface IPostDao {
   one(c: Context<HonoConfig>, postId: number): Promise<PostDTO>
@@ -10,6 +11,12 @@ export interface IPostDao {
 export class PostDao implements IPostDao {
   private static getOctokit(c: Context<HonoConfig>) {
     return c.var.octokit
+  }
+
+  private static async getZennPosts(c: Context<HonoConfig>) {
+    const res = await fetch('https://zenn.dev/api/articles?username=umaidashi')
+    const data: { articles: ZennPost[] } = await res.json()
+    return data.articles
   }
 
   async one(c: Context<HonoConfig>, postId: number) {
@@ -38,7 +45,8 @@ export class PostDao implements IPostDao {
         typeof l === 'string'
           ? { id: 0, name: l, color: '' }
           : { id: l.id ?? 0, name: l.name ?? '', color: l.color ?? '' }
-      )
+      ),
+      Platforms.Personal
     )
   }
 
@@ -56,7 +64,21 @@ export class PostDao implements IPostDao {
     const data = res.data
     const completed = data.filter(d => d.state_reason === 'completed')
 
-    const posts: PostDTO[] = completed.map(d => {
+    const zennPostsRaw = await PostDao.getZennPosts(c)
+    const zennPosts = zennPostsRaw.map(d => {
+      return new PostDTO(
+        d.id,
+        d.title,
+        '',
+        new Date(d.published_at),
+        new Date(d.body_updated_at),
+        [],
+        Platforms.Zenn,
+        d
+      )
+    })
+
+    const personalPosts: PostDTO[] = completed.map(d => {
       return new PostDTO(
         d.number,
         d.title,
@@ -67,8 +89,13 @@ export class PostDao implements IPostDao {
           typeof l === 'string'
             ? { id: 0, name: l, color: '' }
             : { id: l.id ?? 0, name: l.name ?? '', color: l.color ?? '' }
-        )
+        ),
+        Platforms.Personal
       )
+    })
+
+    const posts = [...zennPosts, ...personalPosts].sort((a, b) => {
+      return b.updated_at.getTime() - a.updated_at.getTime()
     })
     return posts
   }

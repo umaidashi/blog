@@ -24,7 +24,9 @@ export default function Index() {
       <ul className='list-disc mt-4 pl-6 space-y-2'>
         {data.data.map(post => (
           <li key={post.id}>
-            <Link to={`/posts/${post.id}`}>{post.title}</Link>
+            <Link to={`/posts/${post.id}`}>
+              {post.platform} : {post.title} : {post.created_at}
+            </Link>
           </li>
         ))}
       </ul>
