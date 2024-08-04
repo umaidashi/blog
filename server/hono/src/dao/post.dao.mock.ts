@@ -1,6 +1,6 @@
 import type { Context } from 'hono'
 import type { HonoConfig } from '../config/hono'
-import { PostDTO } from '../dto/post.dto'
+import { Platforms, PostDTO } from '../dto/post.dto'
 
 export interface IPostDaoMock {
   one(c: Context<HonoConfig>, postId: number): Promise<PostDTO>
@@ -21,7 +21,8 @@ export class PostDaoMock implements IPostDaoMock {
           name: 'ブログ',
           color: 'f9d0c4'
         }
-      ]
+      ],
+      Platforms.Personal
     )
   }
 
@@ -39,7 +40,8 @@ export class PostDaoMock implements IPostDaoMock {
             name: 'React',
             color: '65E6FE'
           }
-        ]
+        ],
+        platform: Platforms.Personal
       },
       {
         id: 9,
@@ -53,7 +55,8 @@ export class PostDaoMock implements IPostDaoMock {
             name: 'ブログ',
             color: 'f9d0c4'
           }
-        ]
+        ],
+        platform: Platforms.Personal
       },
       {
         id: 4,
@@ -61,7 +64,8 @@ export class PostDaoMock implements IPostDaoMock {
         body: 'これまで `umaidashi/til` プロジェクトや、 `umaidashi/me` プロジェクトでブログコンテンツを管理していたが、もっと楽に書けるように構成を考え直したいと思った\r\n\r\nこれまでも GitHub　上のコンテンツをAPIで取得し、mdに変換する方法をとっていたが、管理がなあなあになっていた\r\n',
         created_at: new Date('2024-07-05T04:04:52.000Z'),
         updated_at: new Date('2024-07-06T08:13:17.000Z'),
-        tags: []
+        tags: [],
+        platform: Platforms.Personal
       }
     ]
     return posts
