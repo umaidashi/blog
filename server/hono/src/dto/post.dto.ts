@@ -5,6 +5,12 @@ export class PostDTO {
     public body: string,
     public created_at: Date,
     public updated_at: Date,
-    public tags: { id: number; name: string; color: string }[]
+    public tags: { id: number; name: string; color: string }[],
+    public platform: Platforms
   ) {}
+}
+
+export enum Platforms {
+  Personal = 'Personal',
+  Zenn = 'Zenn'
 }
