@@ -1,5 +1,6 @@
 import { IconContext } from 'react-icons'
 import {
+  Si42,
   SiAstro,
   SiC,
   SiDart,
@@ -67,17 +68,22 @@ const profile = tv({
     sectionH3: 'text-md font-semibold mt-3 mb-2 underline decoration-dotted underline-offset-4',
     paragraph: 'font-medium',
     table: 'w-4/6 table-auto',
-    th: 'py-1 px-2 bg-secondary text-start',
-    td: 'p-2 text-start font-medium'
+    th: 'py-1 px-4 bg-secondary text-start',
+    td: 'py-2 px-4 text-start font-medium',
+    iconWrapper: 'flex flex-wrap gap-2',
+    icon: 'text-3xl flex flex-wrap items-center'
   }
 })
 
-const { section, sectionH2, sectionH3, paragraph, table, th, td } = profile()
+const { section, sectionH2, sectionH3, paragraph, table, th, td, iconWrapper, icon } = profile()
 
 export default function Profile() {
   return (
     <div>
       <Header />
+      <IconContext.Provider value={{ className: 'text-4xl' }}>
+        <Si42 />
+      </IconContext.Provider>
       <PageTitle title='oidon. - umaidashi' />
       <section className={section()}>
         <h2 className={sectionH2()}>About</h2>
@@ -102,12 +108,16 @@ export default function Profile() {
               <td className={td()}>Fukuoka</td>
             </tr>
             <tr>
-              <td className={td()}>Hometown</td>
-              <td className={td()}>Fukuoka</td>
+              <td className={td()}>University</td>
+              <td className={td()}>Meiji.univ</td>
+            </tr>
+            <tr>
+              <td className={td()}>Workplace</td>
+              <td className={td()}>BuySell Technologies</td>
             </tr>
             <tr>
               <td className={td()}>Display Name</td>
-              <td className={td()}>['umaidashi', 'oidon']</td>
+              <td className={td()}>['umaidashi', 'oidon', 'yoishi']</td>
             </tr>
           </tbody>
         </table>
@@ -115,8 +125,8 @@ export default function Profile() {
       <section className={section()}>
         <h2 className={sectionH2()}>Skills</h2>
         <h3 className={sectionH3()}>Languages</h3>
-        <div className='flex gap-2'>
-          <IconContext.Provider value={{ className: 'text-3xl' }}>
+        <div className={iconWrapper()}>
+          <IconContext.Provider value={{ className: icon() }}>
             <SiGo />
             <SiTypescript />
             <SiJavascript />
@@ -132,8 +142,8 @@ export default function Profile() {
           </IconContext.Provider>
         </div>
         <h3 className={sectionH3()}>Frameworks</h3>
-        <div className='flex gap-2'>
-          <IconContext.Provider value={{ className: 'text-3xl' }}>
+        <div className={iconWrapper()}>
+          <IconContext.Provider value={{ className: icon() }}>
             <SiGin />
             <SiReact />
             <SiNextdotjs />
@@ -147,8 +157,8 @@ export default function Profile() {
           </IconContext.Provider>
         </div>
         <h3 className={sectionH3()}>Libraries</h3>
-        <div className='flex gap-2'>
-          <IconContext.Provider value={{ className: 'text-3xl' }}>
+        <div className={iconWrapper()}>
+          <IconContext.Provider value={{ className: icon() }}>
             <SiPrisma />
             <SiDrizzle />
             <SiZod />
@@ -159,8 +169,8 @@ export default function Profile() {
           </IconContext.Provider>
         </div>
         <h3 className={sectionH3()}>RDBMS / BaaS</h3>
-        <div className='flex gap-2'>
-          <IconContext.Provider value={{ className: 'text-3xl' }}>
+        <div className={iconWrapper()}>
+          <IconContext.Provider value={{ className: icon() }}>
             <SiPostgresql />
             <SiPlanetscale />
             <SiSupabase />
@@ -168,8 +178,8 @@ export default function Profile() {
           </IconContext.Provider>
         </div>
         <h3 className={sectionH3()}>Others</h3>
-        <div className='flex gap-2'>
-          <IconContext.Provider value={{ className: 'text-3xl' }}>
+        <div className={iconWrapper()}>
+          <IconContext.Provider value={{ className: icon() }}>
             <SiNeovim />
             <SiVim />
             <SiVercel />
