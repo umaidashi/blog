@@ -36,7 +36,7 @@ export function App() {
         <Links />
       </head>
       <body>
-        <div className='container'>
+        <div className='container h-screen'>
           <Outlet />
         </div>
         <ScrollRestoration />
