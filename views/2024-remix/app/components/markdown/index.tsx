@@ -1,4 +1,5 @@
 import type { MarkdownToJSX } from 'markdown-to-jsx'
+import Md2JSX from 'markdown-to-jsx'
 import { A } from './a'
 import { Details, Summary } from './accordion'
 import { Blockquote } from './blockquote'
@@ -10,7 +11,7 @@ import { P } from './p'
 import { Pre } from './pre'
 import { Table, Tbody, Td, Th, Thead, Tr } from './table'
 
-export const componets: MarkdownToJSX.Overrides = {
+const componets: MarkdownToJSX.Overrides = {
   h1: H1,
   h2: H2,
   h3: H3,
@@ -34,4 +35,16 @@ export const componets: MarkdownToJSX.Overrides = {
   tr: Tr,
   th: Th,
   td: Td
+}
+
+export function Markdown({ body }: { body: string }) {
+  return (
+    <Md2JSX
+      className='flex flex-col gap-4 mb-8'
+      options={{
+        overrides: componets
+      }}>
+      {body}
+    </Md2JSX>
+  )
 }

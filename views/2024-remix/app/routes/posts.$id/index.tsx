@@ -1,7 +1,6 @@
 import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
-import Markdown from 'markdown-to-jsx'
-import { componets } from '~/components/markdown'
+import { Markdown } from '~/components/markdown'
 import { Badge } from '~/components/ui/badge'
 import config from '~/config'
 import { getPostByIdLoader } from './loader'
@@ -63,13 +62,7 @@ export default function Index() {
         </div>
       </div>
       <article className='w-full'>
-        <Markdown
-          className='flex flex-col gap-4 mb-8'
-          options={{
-            overrides: componets
-          }}>
-          {post.body}
-        </Markdown>
+        <Markdown body={post.body} />
       </article>
     </div>
   )
