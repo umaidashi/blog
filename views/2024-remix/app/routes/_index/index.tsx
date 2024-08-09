@@ -7,7 +7,6 @@ import { LuMailbox } from 'react-icons/lu'
 import { tv } from 'tailwind-variants'
 import { Header } from '~/components/header'
 import config from '~/config'
-import { getPostsLoader } from '../posts._index/loader'
 
 export const meta: MetaFunction = () => {
   return [
@@ -19,11 +18,9 @@ export const meta: MetaFunction = () => {
   ]
 }
 
-export const loader = getPostsLoader
-
 const bento = tv({
   slots: {
-    wrapper: 'grid grid-cols-10 grid-rows-10 gap-4 aspect-square',
+    wrapper: 'grid grid-cols-10 grid-rows-10 md:gap-4 gap-2 aspect-square',
     item: 'p-4 rounded-[--radius] bg-secondary transition hover:opacity-70',
     itemHeader: 'flex items-center gap-2',
     title: 'text-xl font-semibold text-secondary-foreground',
