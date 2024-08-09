@@ -40,6 +40,9 @@ const bento = tv({
       },
       github: {
         item: 'bg-[#2b3137]'
+      },
+      x: {
+        item: 'bg-black border-2'
       }
     },
     size: {
@@ -74,7 +77,7 @@ export default function Index() {
           className={item({ class: 'col-span-4 row-span-4 p-0', layout: 'center' })}
           to={'/profile'}>
           <img
-            className='aspect-square object-cover rounded-[--radius]'
+            className='h-full w-full object-cover rounded-[--radius]'
             src='profile.png'
             alt='prifile'
           />
@@ -85,15 +88,17 @@ export default function Index() {
             class: 'col-span-2 row-span-2',
             layout: 'center'
           })}
+          target='_blank'
           to='https://github.com/umaidashi'>
-          <IconContext.Provider value={{ className: icon({ size: 'xl' }) }}>
+          <IconContext.Provider value={{ className: icon({ size: 'xl', class: 'text-white' }) }}>
             <FaGithub />
           </IconContext.Provider>
         </Link>
         <Link
-          className={item({ class: 'col-span-2 row-span-2', layout: 'center' })}
+          className={item({ color: 'x', class: 'col-span-2 row-span-2', layout: 'center' })}
+          target='_blank'
           to={'https://x.com/umaidashi18'}>
-          <IconContext.Provider value={{ className: icon({ size: 'xl' }) }}>
+          <IconContext.Provider value={{ className: icon({ size: 'xl', class: 'text-white' }) }}>
             <FaXTwitter />
           </IconContext.Provider>
         </Link>

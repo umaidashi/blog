@@ -2,7 +2,6 @@ import type { SerializeFrom } from '@remix-run/cloudflare'
 import { Link } from '@remix-run/react'
 import { Platforms } from '@server/hono/src/dto/post.dto'
 import { IconContext } from 'react-icons'
-import { HiExternalLink } from 'react-icons/hi'
 import { SiZenn } from 'react-icons/si'
 import { TbAlignBoxLeftTop } from 'react-icons/tb'
 import { tv } from 'tailwind-variants'
@@ -12,10 +11,10 @@ type props = SerializeFrom<getPostsLoaderType['data'][0]>
 
 const card = tv({
   slots: {
-    base: 'p-4 rounded-[--radius] transition hover:opacity-60',
-    title: 'text-lg font-bold',
+    base: 'md:px-4 sm:px-2 py-2 rounded-[--radius] transition hover:opacity-60',
+    title: 'pb-1 md:text-lg sm:text-md font-semibold',
     date: 'text-sm text-gray-500',
-    wrapper: 'flex items-center gap-2'
+    wrapper: 'flex items-center gap-2 '
   }
 })
 const { base, title, date, wrapper } = card()
@@ -31,11 +30,13 @@ export function Card({
   return (
     <li className={base()}>
       <Link to={`/posts/${post.id}`} className=''>
+        <h2 className={title()}>{post.title}</h2>
         <div className={wrapper()}>
-          <TbAlignBoxLeftTop />
-          <h2 className={title()}>{post.title}</h2>
+          <p className={date()}>{new Date(post.created_at).toLocaleDateString('ja-JP')}</p>
+          <IconContext.Provider value={{ className: '' }}>
+            <TbAlignBoxLeftTop />
+          </IconContext.Provider>
         </div>
-        <p className={date()}>{new Date(post.created_at).toLocaleDateString('ja-JP')}</p>
       </Link>
     </li>
   )
@@ -46,14 +47,13 @@ function ZennPostCard({ post }: { post: props }) {
   return (
     <li className={base()}>
       <Link to={`https://zenn.dev${post.zennObj.path}`} className=''>
+        <h2 className={title()}>{post.title}</h2>
         <div className={wrapper()}>
+          <p className={date()}>{new Date(post.created_at).toLocaleDateString('ja-JP')}</p>
           <IconContext.Provider value={{ color: '#3EA8FF' }}>
             <SiZenn />
           </IconContext.Provider>
-          <h2 className={title()}>{post.title}</h2>
-          <HiExternalLink />
         </div>
-        <p className={date()}>{new Date(post.created_at).toLocaleDateString('ja-JP')}</p>
       </Link>
     </li>
   )
