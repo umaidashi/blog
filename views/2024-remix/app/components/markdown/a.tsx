@@ -5,7 +5,7 @@ export const A = ({
   children
 }: ClassAttributes<HTMLAnchorElement> & AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return (
-    <a href={href} className='text-primary border-b-2 border-primary hover:border-none'>
+    <a href={href} target="_blank" className='text-primary border-b-2 border-primary hover:border-none'>
       {children}
     </a>
   )
