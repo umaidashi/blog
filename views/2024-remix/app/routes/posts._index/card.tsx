@@ -6,6 +6,7 @@ import { SiZenn } from 'react-icons/si'
 import { TbAlignBoxLeftTop } from 'react-icons/tb'
 import { tv } from 'tailwind-variants'
 import type { getPostsLoaderType } from './loader'
+import { Badge } from '~/components/ui/badge'
 
 type props = SerializeFrom<getPostsLoaderType['data'][0]>
 
@@ -36,6 +37,11 @@ export function Card({
           <IconContext.Provider value={{ className: '' }}>
             <TbAlignBoxLeftTop />
           </IconContext.Provider>
+          <div className='flex gap-2 items-center'>
+            {post.tags.map(tag => (
+              <Badge key={tag.id}>#{tag.name}</Badge>
+            ))}
+          </div>
         </div>
       </Link>
     </li>
