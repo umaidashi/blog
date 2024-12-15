@@ -9,7 +9,7 @@ export const H1 = ({
   ...props
 }: ClassAttributes<HTMLHeadingElement> & HTMLAttributes<HTMLHeadingElement>) => {
   return (
-    <h1 className='text-4xl font-bold'>
+    <h1 className='text-4xl font-bold mt-6'>
       <HeadingPrefix num={1} /> {props.children}
     </h1>
   )
