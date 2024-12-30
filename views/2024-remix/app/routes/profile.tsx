@@ -43,6 +43,7 @@ import {
   SiRender,
   SiRuby,
   SiRubyonrails,
+  SiRust,
   SiSass,
   SiSentry,
   SiShadcnui,
@@ -51,6 +52,7 @@ import {
   SiStyledcomponents,
   SiSupabase,
   SiSwift,
+  SiTerraform,
   SiTypescript,
   SiVercel,
   SiVim,
@@ -75,7 +77,7 @@ const profile = tv({
   }
 })
 
-const { section, sectionH2, sectionH3, paragraph, table, th, td, iconWrapper, icon } = profile()
+const { section, sectionH2, sectionH3, table, th, td, iconWrapper, icon } = profile()
 
 export default function Profile() {
   return (
@@ -139,6 +141,8 @@ export default function Profile() {
             <SiR />
             <SiPug />
             <SiSass />
+            <SiRust />
+            <SiTerraform />
           </IconContext.Provider>
         </div>
         <h3 className={sectionH3()}>Frameworks</h3>

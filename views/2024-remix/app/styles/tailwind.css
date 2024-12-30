@@ -95,3 +95,7 @@ tr:last-child td,
 tr:last-child th {
   border-bottom: none;
 }
+
+pre {
+  white-space: pre-wrap;
+}
