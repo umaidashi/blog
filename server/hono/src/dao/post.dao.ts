@@ -100,7 +100,7 @@ export class PostDao implements IPostDao {
     })
 
     const posts = [...zennPosts, ...personalPosts].sort((a, b) => {
-      return b.updated_at.getTime() - a.updated_at.getTime()
+      return b.published_at.getTime() - a.published_at.getTime()
     })
     return posts
   }
