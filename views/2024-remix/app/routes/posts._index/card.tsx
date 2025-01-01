@@ -33,7 +33,7 @@ export function Card({
       <Link to={`/posts/${post.id}`} className=''>
         <h2 className={title()}>{post.title}</h2>
         <div className={wrapper()}>
-          <p className={date()}>{new Date(post.created_at).toLocaleDateString('ja-JP')}</p>
+          <p className={date()}>{new Date(post.closed_at).toLocaleDateString('ja-JP')}</p>
           <IconContext.Provider value={{ className: '' }}>
             <TbAlignBoxLeftTop />
           </IconContext.Provider>
@@ -55,7 +55,7 @@ function ZennPostCard({ post }: { post: props }) {
       <Link to={`https://zenn.dev${post.zennObj.path}`} className=''>
         <h2 className={title()}>{post.title}</h2>
         <div className={wrapper()}>
-          <p className={date()}>{new Date(post.created_at).toLocaleDateString('ja-JP')}</p>
+          <p className={date()}>{new Date(post.closed_at).toLocaleDateString('ja-JP')}</p>
           <IconContext.Provider value={{ color: '#3EA8FF' }}>
             <SiZenn />
           </IconContext.Provider>

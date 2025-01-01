@@ -48,8 +48,8 @@ export default function Index() {
       <div className='flex gap-8'>
         <div className='flex flex-col items-center gap-2'>
           <p className='text-muted-foreground text-xs font-semibold'>Published</p>
-          <time dateTime={post.created_at} className='text-sm font-bold'>
-            {new Date(post.created_at).toLocaleDateString('ja-JP')}
+          <time dateTime={post.closed_at} className='text-sm font-bold'>
+            {new Date(post.closed_at).toLocaleDateString('ja-JP')}
           </time>
         </div>
         <div className='flex flex-col items-center gap-2'>
