@@ -5,8 +5,8 @@ import { IconContext } from 'react-icons'
 import { SiZenn } from 'react-icons/si'
 import { TbAlignBoxLeftTop } from 'react-icons/tb'
 import { tv } from 'tailwind-variants'
-import type { getPostsLoaderType } from './loader'
 import { Badge } from '~/components/ui/badge'
+import type { getPostsLoaderType } from './loader'
 
 type props = SerializeFrom<getPostsLoaderType['data'][0]>
 
