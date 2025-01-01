@@ -23,6 +23,7 @@ export class PostDao implements IPostDao {
         d.title,
         '',
         new Date(d.published_at),
+        new Date(d.published_at),
         new Date(d.body_updated_at),
         [],
         Platforms.Zenn,
@@ -54,6 +55,7 @@ export class PostDao implements IPostDao {
       d.title,
       d.body ?? '',
       new Date(d.created_at),
+      new Date(d.closed_at ?? d.updated_at),
       new Date(d.updated_at),
       d.labels.map(l =>
         typeof l === 'string'
@@ -86,6 +88,7 @@ export class PostDao implements IPostDao {
         d.title,
         d.body ?? '',
         new Date(d.created_at),
+        new Date(d.closed_at ?? d.updated_at),
         new Date(d.updated_at),
         d.labels.map(l =>
           typeof l === 'string'
