@@ -6,7 +6,7 @@ export class PostDTO {
     public title: string,
     public body: string,
     public created_at: Date,
-    public closed_at: Date,
+    public published_at: Date,
     public updated_at: Date,
     public tags: { id: number; name: string; color: string }[],
     public platform: Platforms,
