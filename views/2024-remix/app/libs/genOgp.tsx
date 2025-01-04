@@ -1,13 +1,7 @@
 import satori, { init } from 'satori/wasm'
-
 import initYoga from 'yoga-wasm-web'
 
-const yoga = await initYoga(await fetch('/yoga.wasm').then(res => res.arrayBuffer()))
-init(yoga)
-
 import { svg2png, initialize } from 'svg2png-wasm'
-import wasm from 'svg2png-wasm/svg2png_wasm_bg.wasm'
-await initialize(wasm)
 
 type Weight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
 type FontStyle = 'normal' | 'italic'
@@ -131,6 +125,13 @@ export const genOgp = async (
     scale?: number
   }
 ) => {
+  const yoga = await initYoga(await fetch('/yoga.wasm').then(res => res.arrayBuffer()))
+  init(yoga)
+  const wasm = await fetch('https://unpkg.com/svg2png-wasm/svg2png_wasm_bg.wasm').then(res =>
+    res.arrayBuffer()
+  )
+  await initialize(wasm)
+
   const fontList = await getFonts(fonts, ctx)
   const svg = await satori(element, {
     width,
