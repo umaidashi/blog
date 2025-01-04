@@ -15,7 +15,25 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     {
       name: 'description',
       content: `${data.data.body.slice(0, 100)}...`
-    }
+    },
+    { property: 'og:title', content: config.app.sitename },
+    {
+      property: 'og:description',
+      content: config.app.description
+    },
+    { property: 'og:site_name', content: config.app.sitename },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: config.links.homepage },
+    { property: 'og:image', content: config.links.ogptop },
+    { name: 'twitter:title', content: config.app.sitename },
+    {
+      name: 'twitter:description',
+      content: config.app.description
+    },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:image', content: config.links.ogptop },
+    { name: 'twitter:site', content: config.links.x_name },
+    { name: 'twitter:creator', content: config.links.x_name }
   ]
 }
 

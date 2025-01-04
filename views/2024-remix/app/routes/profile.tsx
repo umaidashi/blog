@@ -1,3 +1,4 @@
+import { MetaFunction } from '@remix-run/cloudflare'
 import { IconContext } from 'react-icons'
 import {
   Si42,
@@ -62,6 +63,35 @@ import {
 import { tv } from 'tailwind-variants'
 import { Header } from '~/components/header'
 import PageTitle from '~/components/page_title'
+import config from '~/config'
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: `プロフィール - ${config.app.sitename}` },
+    {
+      name: 'description',
+      content: 'プロフィール'
+    },
+    { property: 'og:title', content: `プロフィール - ${config.app.sitename}` },
+    {
+      property: 'og:description',
+      content: config.app.description
+    },
+    { property: 'og:site_name', content: config.app.sitename },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: config.links.homepage },
+    { property: 'og:image', content: config.links.ogptop },
+    { name: 'twitter:title', content: config.app.sitename },
+    {
+      name: 'twitter:description',
+      content: config.app.description
+    },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:image', content: config.links.ogptop },
+    { name: 'twitter:site', content: config.links.x_name },
+    { name: 'twitter:creator', content: config.links.x_name }
+  ]
+}
 
 const profile = tv({
   slots: {
