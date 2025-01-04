@@ -6,17 +6,14 @@ export const onRequest = vercelOGPagesPlugin({
     // pathnameから最後の要素を抜き出す
     const paths = pathname.split('/')
     const slug = paths[paths.length - 1]
-    console.log(slug)
 
     return (
       <div
         style={{
-          // flexboxで中央寄せ
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          // 画像の幅いっぱいまでdivを広げる
           width: '100%',
           height: '100%',
           backgroundImage: 'url(https://2024-remix.pages.dev/ogp_background.png)'
