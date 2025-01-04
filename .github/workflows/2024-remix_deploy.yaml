@@ -30,19 +30,13 @@ jobs:
         working-directory: views/2024-remix
 
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/pages-action@1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
-          # directory: build/client
+          projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
+          directory: build/client
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           wranglerVersion: "3"
           workingDirectory: views/2024-remix
           branch: main
-          command: pages deploy ./build/client --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }}
-
-      - name: print deployment-url
-        env:
-          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
-        run: echo $DEPLOYMENT_URL
