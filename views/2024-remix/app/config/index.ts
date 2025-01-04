@@ -13,6 +13,6 @@ export default {
     x_name: data.author.x_name,
     zenn: data.author.zenn,
     homepage: data.homepage,
-    ogptop: 'https://chietto.yu-ta-9.com/ogp.png'
+    ogptop: `${data.homepage}ogp.png`
   }
 }
