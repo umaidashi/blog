@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@cloudflare/pages-plugin-vercel-og": "^0.1.2",
+    "@napi-rs/canvas": "^0.1.65",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
     "@radix-ui/react-navigation-menu": "^1.2.0",
     "@radix-ui/react-slot": "^1.1.0",
