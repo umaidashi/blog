@@ -10,32 +10,29 @@ import config from '~/config'
 
 export const meta: MetaFunction = () => {
   return [
-    { title: `${config.app.sitename}` },
+    { title: config.app.sitename },
     {
       name: 'description',
-      content: `${config.app.description}`
+      content: config.app.description
     },
-    { property: 'og:title', content: 'チエっと！ | TOP' },
+    { property: 'og:title', content: config.app.sitename },
     {
       property: 'og:description',
-      content:
-        'チエっと！は、あらゆる知恵を学べるサイトです！あなたの暮らしをちょっと便利にする知恵を紹介します！'
+      content: config.app.description
     },
-    { property: 'og:site_name', content: 'チエっと！' },
+    { property: 'og:site_name', content: config.app.sitename },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://chietto.yu-ta-9.com' },
-    { property: 'og:image', content: 'https://chietto.yu-ta-9.com/ogp.png' },
-    { name: 'twitter:title', content: 'チエっと！ | TOP' },
+    { property: 'og:url', content: config.links.homepage },
+    { property: 'og:image', content: config.links.ogptop },
+    { name: 'twitter:title', content: config.app.sitename },
     {
       name: 'twitter:description',
-      content:
-        'チエっと！は、あらゆる知恵を学べるサイトです！あなたの暮らしをちょっと便利にする知恵を紹介します！'
+      content: config.app.description
     },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:image', content: 'https://chietto.yu-ta-9.com/ogp.png' },
-    { name: 'twitter:site', content: '@yuta9_drumming' },
-    { name: 'twitter:creator', content: '@yuta9_drumming' },
-    { property: 'fb:app_id', content: 'xxx' }
+    { name: 'twitter:image', content: config.links.ogptop },
+    { name: 'twitter:site', content: config.links.x_name },
+    { name: 'twitter:creator', content: config.links.x_name }
   ]
 }
 
@@ -76,7 +73,7 @@ const bento = tv({
   }
 })
 
-const { wrapper, item, title, text, itemHeader, icon } = bento()
+const { wrapper, item, title, itemHeader, icon } = bento()
 
 export default function Index() {
   return (
@@ -110,7 +107,7 @@ export default function Index() {
             layout: 'center'
           })}
           target='_blank'
-          to='https://github.com/umaidashi'>
+          to={config.links.github}>
           <IconContext.Provider value={{ className: icon({ size: 'xl', class: 'text-white' }) }}>
             <FaGithub />
           </IconContext.Provider>
@@ -122,7 +119,7 @@ export default function Index() {
             layout: 'center'
           })}
           target='_blank'
-          to={'https://x.com/umaidashi18'}>
+          to={config.links.x}>
           <IconContext.Provider value={{ className: icon({ size: 'xl', class: 'text-white' }) }}>
             <FaXTwitter />
           </IconContext.Provider>
