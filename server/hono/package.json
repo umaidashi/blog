@@ -1,5 +1,6 @@
 {
   "name": "@server/hono",
+  "version": "0.0.1",
   "main": "src/index.ts",
   "scripts": {
     "dev": "wrangler dev src/index.ts",
