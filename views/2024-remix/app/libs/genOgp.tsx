@@ -1,7 +1,9 @@
 import satori, { init } from 'satori/wasm'
+
 import initYoga from 'yoga-wasm-web'
-import yogaWasm from 'yoga-wasm-web/dist/yoga.wasm'
-init(await initYoga(yogaWasm))
+
+const yoga = await initYoga(await fetch('/yoga.wasm').then(res => res.arrayBuffer()))
+init(yoga)
 
 import { svg2png, initialize } from 'svg2png-wasm'
 import wasm from 'svg2png-wasm/svg2png_wasm_bg.wasm'
