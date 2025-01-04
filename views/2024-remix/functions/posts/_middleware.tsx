@@ -18,7 +18,8 @@ export const onRequest = vercelOGPagesPlugin({
           justifyContent: 'center',
           // 画像の幅いっぱいまでdivを広げる
           width: '100%',
-          height: '100%'
+          height: '100%',
+          backgroundImage: 'url(https://2024-remix.pages.dev/ogp_background.png)'
         }}>
         <h1 style={{ fontSize: '80px' }}>This is {slug} article</h1>
       </div>
