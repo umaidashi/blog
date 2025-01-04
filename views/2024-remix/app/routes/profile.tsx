@@ -1,4 +1,4 @@
-import { MetaFunction } from '@remix-run/cloudflare'
+import type { MetaFunction } from '@remix-run/cloudflare'
 import { IconContext } from 'react-icons'
 import {
   Si42,
