@@ -14,7 +14,28 @@ export const meta: MetaFunction = () => {
     {
       name: 'description',
       content: `${config.app.description}`
-    }
+    },
+    { property: 'og:title', content: 'チエっと！ | TOP' },
+    {
+      property: 'og:description',
+      content:
+        'チエっと！は、あらゆる知恵を学べるサイトです！あなたの暮らしをちょっと便利にする知恵を紹介します！'
+    },
+    { property: 'og:site_name', content: 'チエっと！' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://chietto.yu-ta-9.com' },
+    { property: 'og:image', content: 'https://chietto.yu-ta-9.com/ogp.png' },
+    { name: 'twitter:title', content: 'チエっと！ | TOP' },
+    {
+      name: 'twitter:description',
+      content:
+        'チエっと！は、あらゆる知恵を学べるサイトです！あなたの暮らしをちょっと便利にする知恵を紹介します！'
+    },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:image', content: 'https://chietto.yu-ta-9.com/ogp.png' },
+    { name: 'twitter:site', content: '@yuta9_drumming' },
+    { name: 'twitter:creator', content: '@yuta9_drumming' },
+    { property: 'fb:app_id', content: 'xxx' }
   ]
 }
 
@@ -71,7 +92,10 @@ export default function Index() {
           </div>
         </Link>
         <Link
-          className={item({ class: 'col-span-4 row-span-4 p-0', layout: 'center' })}
+          className={item({
+            class: 'col-span-4 row-span-4 p-0',
+            layout: 'center'
+          })}
           to={'/profile'}>
           <img
             className='h-full w-full object-cover rounded-[--radius]'
@@ -92,7 +116,11 @@ export default function Index() {
           </IconContext.Provider>
         </Link>
         <Link
-          className={item({ color: 'x', class: 'col-span-2 row-span-2', layout: 'center' })}
+          className={item({
+            color: 'x',
+            class: 'col-span-2 row-span-2',
+            layout: 'center'
+          })}
           target='_blank'
           to={'https://x.com/umaidashi18'}>
           <IconContext.Provider value={{ className: icon({ size: 'xl', class: 'text-white' }) }}>
