@@ -26,89 +26,37 @@ const downloadFont = async (fontName: string) => {
 }
 
 const getFonts = async (fontList: string[], ctx: ExecutionContext): Promise<Font[]> => {
-  const cache = await caches.open('fonts')
+  //const cache = await caches.open('fonts')
   const fonts: Font[] = []
   for (const fontName of fontList) {
-    const cacheKey = `http://font/${encodeURI(fontName)}`
+    //const cacheKey = `http://font/${encodeURI(fontName)}`
 
-    const response = await cache.match(cacheKey)
-    if (response) {
-      fonts.push({
-        name: fontName,
-        data: await response.arrayBuffer(),
-        weight: 400,
-        style: 'normal'
-      })
-    } else {
-      const data = await downloadFont(fontName)
+    //const response = await cache.match(cacheKey)
+    //if (response) {
+    //fonts.push({
+    //  name: fontName,
+    //  data: await response.arrayBuffer(),
+    //  weight: 400,
+    //  style: 'normal'
+    //})
+    //} else {
+    const data = await downloadFont(fontName)
 
-      if (data) {
-        ctx.waitUntil(cache.put(cacheKey, new Response(data)))
-        fonts.push({ name: fontName, data, weight: 400, style: 'normal' })
-      }
+    if (data) {
+      //    ctx.waitUntil(cache.put(cacheKey, new Response(data)))
+      fonts.push({ name: fontName, data, weight: 400, style: 'normal' })
     }
+    //}
   }
   return fonts.flatMap((v): Font[] => (v ? [v] : []))
 }
 
-//const createLoadAdditionalAsset = ({
-//  ctx,
-//  emojis
-//}: {
-//  ctx: ExecutionContext
-//  emojis: {
-//    url: string
-//    upper?: boolean
-//  }[]
-//}) => {
-//  const getEmojiSVG = async (code: string) => {
-//    const cache = caches.default
-//    const cacheKey = `http://emoji/${encodeURI(JSON.stringify(emojis))}/${code}`
-//    for (const { url, upper } of emojis) {
-//      const emojiURL = `${url}${
-//        upper === false ? code.toLocaleLowerCase() : code.toUpperCase()
-//      }.svg`
-//      let response = await caches.default.match(cacheKey)
-//      if (!response) {
-//        response = await fetch(emojiURL)
-//        if (response.status === 200) {
-//          ctx.waitUntil(cache.put(cacheKey, response.clone()))
-//        }
-//      }
-//      if (response.status === 200) {
-//        return await response.text()
-//      }
-//    }
-//    return undefined
-//  }
-//
-//  //const loadEmoji = async (segment: string): Promise<string | undefined> => {
-//  //  const codes = Array.from(segment).map(char => char.codePointAt(0)!)
-//  //  const isZero = codes.includes(0x200d)
-//  //  const code = codes
-//  //    .filter(code => isZero || code !== 0xfe0f)
-//  //    .map(v => v.toString(16))
-//  //    .join('-')
-//  //  return getEmojiSVG(code)
-//  //}
-//
-//  const loadAdditionalAsset = async (code: string, segment: string) => {
-//    //if (code === 'emoji') {
-//    //  const svg = await loadEmoji(segment)
-//    //  if (!svg) return segment
-//    //  return `data:image/svg+xml;base64,${btoa(svg)}`
-//    //}
-//    return []
-//  }
-//
-//  return loadAdditionalAsset
-//}
+let initialized = false
 
 export const genOgp = async (
   element: JSX.Element,
   {
     fonts,
-    //emojis,
     ctx,
     width,
     height,
@@ -116,28 +64,32 @@ export const genOgp = async (
   }: {
     ctx: ExecutionContext
     fonts: string[]
-    //emojis?: {
-    //  url: string
-    //  upper?: boolean
-    //}[]
     width: number
     height?: number
     scale?: number
   }
 ) => {
-  const yoga = await initYoga(await fetch('/yoga.wasm').then(res => res.arrayBuffer()))
-  init(yoga)
-  const wasm = await fetch('https://unpkg.com/svg2png-wasm/svg2png_wasm_bg.wasm').then(res =>
-    res.arrayBuffer()
+  console.log('genOgp start')
+  if (!initialized) {
+    initialized = true
+    const wasm = await fetch('https://unpkg.com/svg2png-wasm/svg2png_wasm_bg.wasm').then(res =>
+      res.arrayBuffer()
+    )
+    await initialize(wasm)
+  }
+  const yoga = await initYoga(
+    await fetch('https://cdn.jsdelivr.net/npm/yoga-wasm-web@0.3.3/dist/yoga.wasm').then(res =>
+      res.arrayBuffer()
+    )
   )
-  await initialize(wasm)
+  init(yoga)
+  console.log('genOgp initialized')
 
   const fontList = await getFonts(fonts, ctx)
   const svg = await satori(element, {
     width,
     height,
     fonts: fontList
-    //loadAdditionalAsset: emojis ? createLoadAdditionalAsset({ ctx, emojis }) : undefined
   })
   return await svg2png(svg, { scale })
 }

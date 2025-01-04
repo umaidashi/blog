@@ -6,17 +6,14 @@ const width = 1200
 const height = 630
 
 export async function loader({ params, context, request }: LoaderFunctionArgs) {
-  const url = new URL(request.url)
-  if (url.pathname !== '/') {
-    return new Response(null, { status: 404 })
-  }
+  //const url = new URL(request.url)
 
-  const cache = await caches.open('ogp')
-  const cacheKey = new Request(url.toString())
-  const cachedResponse = await cache.match(cacheKey)
-  if (cachedResponse) {
-    return cachedResponse
-  }
+  //const cache = await caches.open('ogp')
+  //const cacheKey = new Request(url.toString())
+  //const cachedResponse = await cache.match(cacheKey)
+  //if (cachedResponse) {
+  //  return cachedResponse
+  //}
   const postId = params.id
   if (!postId) return { error: 'Post ID is required' }
 
@@ -107,6 +104,6 @@ export async function loader({ params, context, request }: LoaderFunctionArgs) {
     }
   })
 
-  ctx.waitUntil(cache.put(cacheKey, response.clone()))
+  //ctx.waitUntil(cache.put(cacheKey, response.clone()))
   return response
 }
