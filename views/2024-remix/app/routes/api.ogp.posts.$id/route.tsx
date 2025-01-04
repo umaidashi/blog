@@ -1,24 +1,30 @@
-import { GlobalFonts, SKRSContext2D, createCanvas, loadImage } from '@napi-rs/canvas'
-import type { LoaderFunctionArgs } from '@remix-run/node'
+import type { LoaderFunctionArgs } from '@remix-run/cloudflare'
 import { createClient } from '~/client'
+import { genOgp } from '~/libs/genOgp'
 
-import fs from 'node:fs'
-
-import path, { join } from 'node:path'
-import { cwd } from 'node:process'
-
-/** 画像のwidth */
 const width = 1200
-/** 画像のheight */
 const height = 630
 
-export async function loader({ params, context }: LoaderFunctionArgs) {
+export async function loader({ params, context, request }: LoaderFunctionArgs) {
+  const url = new URL(request.url)
+  if (url.pathname !== '/') {
+    return new Response(null, { status: 404 })
+  }
+
+  const cache = await caches.open('ogp')
+  const cacheKey = new Request(url.toString())
+  const cachedResponse = await cache.match(cacheKey)
+  if (cachedResponse) {
+    return cachedResponse
+  }
   const postId = params.id
   if (!postId) return { error: 'Post ID is required' }
 
   const client = createClient(context.cloudflare.env)
   const res = await client.v1.posts[':id'].$get({ param: { id: postId } })
   const data = await res.json()
+
+  const ctx = context.cloudflare.ctx as ExecutionContext
 
   if (typeof data !== 'object') {
     return new Response(null, {
@@ -36,70 +42,71 @@ export async function loader({ params, context }: LoaderFunctionArgs) {
 
   const post = data.data
 
-  // ※1 Fontの設定
-  GlobalFonts.registerFromPath(join(cwd(), 'app', 'assets', 'fonts', 'Itim-Regular.ttf'), 'Itim')
-  GlobalFonts.registerFromPath(
-    join(cwd(), 'app', 'assets', 'fonts', 'NotoSansJP-Medium.ttf'),
-    'Noto'
+  const ogpNode = (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        height: '100%',
+        padding: '16px 24px',
+        overflow: 'hidden',
+        fontFamily: 'NotoSansJP'
+      }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          border: 'solid 16px #0044FF',
+          borderRadius: '24px',
+          boxSizing: 'border-box',
+          background: 'linear-gradient(to bottom right, #ffffff, #d3eef9)'
+        }}>
+        <div
+          style={{
+            display: 'flex',
+            flex: 1
+          }}>
+          <h1
+            style={{
+              display: 'block',
+              flex: 1,
+              fontSize: 72,
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '0 42px',
+              wordBreak: 'break-all',
+              textOverflow: 'ellipsis',
+              lineClamp: 4,
+              lineHeight: '64px'
+            }}>
+            {post.title}
+          </h1>
+        </div>
+      </div>
+    </div>
   )
-  GlobalFonts.registerFromPath(join(cwd(), 'app', 'assets', 'fonts', 'KiwiMaru-Medium.ttf'), 'Kiwi')
 
-  const canvas = createCanvas(width, height)
-  const ctx = canvas.getContext('2d')
-
-  // ※2 背景画像の取得
-  const ogpArticle = path.resolve(process.cwd(), 'app/assets/images/ogp_background.png')
-  const image = await loadImage(fs.readFileSync(ogpArticle))
-  ctx.drawImage(image, 0, 0, width, height)
-
-  ctx.font = '72px "Itim", "Kiwi", "Noto"'
-  ctx.textAlign = 'center'
-  ctx.textBaseline = 'middle'
-  ctx.fillStyle = '#0a0805'
-
-  const wrappedText = wrapText(ctx, post.title, width / 2, height / 2, 1200, 72)
-
-  wrappedText.forEach(function (item) {
-    ctx.fillText(item[0] as string, item[1] as number, item[2] as number)
+  const png = await genOgp(ogpNode, {
+    ctx: ctx,
+    scale: 0.7,
+    width,
+    height,
+    fonts: ['Itim', 'Noto Sans', 'Noto Sans Math', 'Noto Sans Symbols', 'Noto Sans JP']
   })
-  //// ※3 文字のセット
-  //ctx.fillText(title, width / 2, height / 2)
-
-  return new Response(canvas.toBuffer('image/png'), {
+  const response = new Response(png, {
     headers: {
-      'Content-Type': 'image/png'
+      'Content-Type': 'image/png',
+      'Cache-Control': 'public, max-age=31536000, immutable',
+      date: new Date().toUTCString()
+    },
+    cf: {
+      cacheEverything: true,
+      cacheTtl: 31536000
     }
   })
-}
 
-const wrapText = function (
-  ctx: SKRSContext2D,
-  text: string,
-  x: number,
-  y: number,
-  maxWidth: number,
-  lineHeight: number
-) {
-  let words = text.split(' ')
-  let line = ''
-  let testLine = ''
-  let lineArray = []
-
-  for (var n = 0; n < words.length; n++) {
-    testLine += `${words[n]} `
-    let metrics = ctx.measureText(testLine)
-    let testWidth = metrics.width
-    if (testWidth > maxWidth && n > 0) {
-      lineArray.push([line, x, y])
-      y += lineHeight
-      line = `${words[n]} `
-      testLine = `${words[n]} `
-    } else {
-      line += `${words[n]} `
-    }
-    if (n === words.length - 1) {
-      lineArray.push([line, x, y])
-    }
-  }
-  return lineArray
+  ctx.waitUntil(cache.put(cacheKey, response.clone()))
+  return response
 }
