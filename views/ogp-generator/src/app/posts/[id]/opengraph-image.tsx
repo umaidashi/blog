@@ -11,13 +11,13 @@ export const size = {
 export const contentType = 'image/png'
 
 export default async function Image({ params }: { params: { id: number } }) {
-  const itimRegular = fetch(new URL('http://localhost:3000/Itim-Regular.ttf')).then(res =>
-    res.arrayBuffer()
-  )
-  const kiwiMaruRegular = fetch(new URL('http://localhost:3000/KiwiMaru-Regular.ttf')).then(res =>
-    res.arrayBuffer()
-  )
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+  console.log('baseUrl', baseUrl)
 
+  const itimRegular = fetch(new URL(`${baseUrl}/Itim-Regular.ttf`)).then(res => res.arrayBuffer())
+  const kiwiMaruRegular = fetch(new URL(`${baseUrl}/KiwiMaru-Regular.ttf`)).then(res =>
+    res.arrayBuffer()
+  )
   return new ImageResponse(
     <div
       style={{
@@ -27,7 +27,7 @@ export default async function Image({ params }: { params: { id: number } }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundImage: 'url(http://localhost:3000/ogp_background.png)'
+        backgroundImage: `url(${baseUrl}/ogp_background.png)`
       }}>
       {params.id}
     </div>,
