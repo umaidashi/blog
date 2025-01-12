@@ -9,10 +9,10 @@ export const contentType = 'image/png'
 export default async function Image({ params }: { params: { id: number } }) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
   console.log('baseUrl', baseUrl)
-  //const itimRegular = fetch(new URL(`${baseUrl}/Itim-Regular.ttf`)).then(res => res.arrayBuffer())
-  //const kiwiMaruRegular = fetch(new URL(`${baseUrl}/KiwiMaru-Regular.ttf`)).then(res =>
-  //  res.arrayBuffer()
-  //)
+  const itimRegular = fetch(new URL(`${baseUrl}/Itim-Regular.ttf`)).then(res => res.arrayBuffer())
+  const kiwiMaruRegular = fetch(new URL(`${baseUrl}/KiwiMaru-Regular.ttf`)).then(res =>
+    res.arrayBuffer()
+  )
   return new ImageResponse(
     <div
       style={{
@@ -21,23 +21,23 @@ export default async function Image({ params }: { params: { id: number } }) {
         height: '100%',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
-        //backgroundImage: `url(${baseUrl}/ogp_background.png)`
+        justifyContent: 'center',
+        backgroundImage: `url(${baseUrl}/ogp_background.png)`
       }}>
       {params.id}
     </div>,
     {
-      ...size
-      //fonts: [
-      //  {
-      //    name: 'Itim',
-      //    data: await itimRegular
-      //  },
-      //  {
-      //    name: 'KiwiMaru',
-      //    data: await kiwiMaruRegular
-      //  }
-      //]
+      ...size,
+      fonts: [
+        {
+          name: 'Itim',
+          data: await itimRegular
+        },
+        {
+          name: 'KiwiMaru',
+          data: await kiwiMaruRegular
+        }
+      ]
     }
   )
 }
