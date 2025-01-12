@@ -26,7 +26,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     { property: 'og:url', content: config.links.homepage },
     {
       property: 'og:image',
-      content: `${config.links.homepage}api/ogp/posts/${data.data.id}`
+      content: config.links.ogpurl.replace('{{ID}}', data.data.id.toString())
     },
     { name: 'twitter:title', content: config.app.sitename },
     {
@@ -36,7 +36,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     { name: 'twitter:card', content: 'summary_large_image' },
     {
       name: 'twitter:image',
-      content: `${config.links.homepage}api/ogp/posts/${data.data.id}`
+      content: config.links.ogpurl.replace('{{ID}}', data.data.id.toString())
     },
     { name: 'twitter:site', content: config.links.x_name },
     { name: 'twitter:creator', content: config.links.x_name }
