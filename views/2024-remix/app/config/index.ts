@@ -13,7 +13,7 @@ export default {
     x_name: data.author.x_name,
     zenn: data.author.zenn,
     homepage: data.homepage,
-    ogptop: `${data.homepage}ogp.png`
-    //ogpurl: 'https://blog-ogp-generator.vercel.app/posts/{{ID}}/opengraph-image'
+    ogptop: `${data.homepage}ogp.png`,
+    ogpurl: 'https://blog-ogp-generator.vercel.app/posts/{{ID}}/opengraph-image'
   }
 }
