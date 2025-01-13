@@ -10,6 +10,8 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return []
   }
 
+  //const ogpurl = config.links.ogpurl.replace('{{ID}}', data.data.id.toString())
+
   return [
     { title: `${data.data.title} - ${config.app.sitename}` },
     {
@@ -24,20 +26,20 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     { property: 'og:site_name', content: config.app.sitename },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: config.links.homepage },
-    {
-      property: 'og:image',
-      content: config.links.ogpurl.replace('{{ID}}', data.data.id.toString())
-    },
+    //{
+    //  property: 'og:image',
+    //  content: ogpurl
+    //},
     { name: 'twitter:title', content: config.app.sitename },
     {
       name: 'twitter:description',
       content: config.app.description
     },
     { name: 'twitter:card', content: 'summary_large_image' },
-    {
-      name: 'twitter:image',
-      content: config.links.ogpurl.replace('{{ID}}', data.data.id.toString())
-    },
+    //{
+    //  name: 'twitter:image',
+    //  content: ogpurl
+    //},
     { name: 'twitter:site', content: config.links.x_name },
     { name: 'twitter:creator', content: config.links.x_name }
   ]
