@@ -10,18 +10,20 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return []
   }
 
+  const title = `${data.data.title} - ${config.app.sitename}`
   const ogpurl = config.links.ogpurl.replace('{{ID}}', data.data.id.toString())
+  const description = data.data.body.slice(0, 100)
 
   return [
-    { title: `${data.data.title} - ${config.app.sitename}` },
+    { title: title },
     {
       name: 'description',
       content: `${data.data.body.slice(0, 100)}...`
     },
-    { property: 'og:title', content: config.app.sitename },
+    { property: 'og:title', title },
     {
       property: 'og:description',
-      content: config.app.description
+      content: description
     },
     { property: 'og:site_name', content: config.app.sitename },
     { property: 'og:type', content: 'website' },
@@ -30,10 +32,10 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
       property: 'og:image',
       content: ogpurl
     },
-    { name: 'twitter:title', content: config.app.sitename },
+    { name: 'twitter:title', content: title },
     {
       name: 'twitter:description',
-      content: config.app.description
+      content: description
     },
     { name: 'twitter:card', content: 'summary_large_image' },
     {
