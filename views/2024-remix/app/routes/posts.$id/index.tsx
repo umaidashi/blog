@@ -20,7 +20,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
       name: 'description',
       content: `${data.data.body.slice(0, 100)}...`
     },
-    { property: 'og:title', title },
+    { property: 'og:title', content: title },
     {
       property: 'og:description',
       content: description
