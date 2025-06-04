@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "wrangler dev src/index.ts",
     "deploy": "wrangler deploy --minify src/index.ts",
-    "lint": "biome check --write ./"
+    "lint": "biome check --write ./",
+    "test": "bun test"
   },
   "dependencies": {
     "@octokit/rest": "^21.0.0",
