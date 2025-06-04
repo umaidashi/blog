@@ -97,7 +97,7 @@ export default function Index() {
           <img
             className='h-full w-full object-cover rounded-[--radius]'
             src='profile.png'
-            alt='prifile'
+            alt='profile'
           />
         </Link>
         <Link
