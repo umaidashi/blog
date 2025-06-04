@@ -41,7 +41,7 @@ export const Pre = ({
       </div>
       {highlightedCode ? (
         <div
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: output sanitized by Shiki
           dangerouslySetInnerHTML={{ __html: highlightedCode }}
         />
       ) : (
