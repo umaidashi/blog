@@ -1,6 +1,11 @@
 import type { HC } from '@server/hono'
 import { hc } from 'hono/client'
 
+type Env = {
+  API_URL: string
+  API_TOKEN: string
+}
+
 export const createClient = (env: Env) => {
   const url = env.API_URL
   const token = env.API_TOKEN
